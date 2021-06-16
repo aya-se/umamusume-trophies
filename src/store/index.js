@@ -39,7 +39,7 @@ export default new Vuex.Store({
     login() {
       const provider = new firebase.auth.GoogleAuthProvider();
       firebase.auth().signInWithRedirect(provider);
-      this.setLoadingStatus(true);
+      this.state.isLoading = true;
       router.push("/loading");
     },
     setLoginStatus({ commit }, status) {
