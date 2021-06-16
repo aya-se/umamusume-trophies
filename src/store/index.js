@@ -9,7 +9,6 @@ export default new Vuex.Store({
   state: {
     login_user: null,
     isLogin: false,
-    isLoading: false,
     races: races,
   },
   mutations: {
@@ -21,9 +20,6 @@ export default new Vuex.Store({
     },
     setLoginStatus(state, status) {
       state.isLogin = status;
-    },
-    setLoadingStatus(state, status) {
-      state.isLoading = status;
     },
   },
   actions: {
@@ -39,14 +35,10 @@ export default new Vuex.Store({
     login() {
       const provider = new firebase.auth.GoogleAuthProvider();
       firebase.auth().signInWithRedirect(provider);
-      this.state.isLoading = true;
       router.push("/loading");
     },
     setLoginStatus({ commit }, status) {
       commit("setLoginStatus", status);
-    },
-    setLoadingStatus({ commit }, status) {
-      commit("setLoadingStatus", status);
     },
     getCsv(url) {
       getCsv(url);
@@ -56,9 +48,6 @@ export default new Vuex.Store({
     uid: (state) => (state.login_user ? state.login_user.uid : null),
     isLogin(state) {
       return state.isLogin;
-    },
-    isLoading(state) {
-      return state.isLoading;
     },
     races(state) {
       return state.races;

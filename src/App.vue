@@ -1,5 +1,5 @@
 <template>
-  <div id="app" v-loading="isLoading === true">
+  <div id="app">
     <Header v-if="this.$store.getters.isLogin" />
     <router-view />
   </div>
@@ -14,7 +14,6 @@ export default {
   components: { Header },
   created() {
     firebase.auth().onAuthStateChanged((user) => {
-      this.setLoadingStatus(false);
       if (user) {
         this.setLoginUser(user);
         this.setLoginStatus(true);
@@ -33,10 +32,9 @@ export default {
       "logout",
       "deleteLoginUser",
       "setLoginStatus",
-      "setLoadingStatus",
       "getCsv",
     ]),
-    ...mapGetters(["uid", "isLogin", "isLoading", "races"]),
+    ...mapGetters(["uid", "isLogin", "races"]),
   },
 };
 </script>
