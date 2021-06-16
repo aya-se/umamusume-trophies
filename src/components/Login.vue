@@ -1,20 +1,15 @@
 <template>
-  <div id="app">
-    <v-app>
-      <v-app-bar app>
-        <h1>ウマ娘レース計画ツール(仮)</h1>
-        <router-link to="/login">Login</router-link> |
-        <router-link to="/list">List</router-link> |
-        <router-link to="/planning">Planning</router-link> |
-        <router-link to="/info">Info</router-link>
-      </v-app-bar>
-      <v-main>
-        <router-view />
-      </v-main>
-    </v-app>
+  <div>
+    <h1>Login</h1>
+    <p>uid:{{ this.$store.getters.uid }}</p>
+    <button type="button" class="btn btn-default" @click="login">
+      ログイン
+    </button>
+    <button type="button" class="btn btn-default" @click="logout">
+      ログアウト
+    </button>
   </div>
 </template>
-
 <script>
 import firebase from "firebase";
 import { mapActions } from "vuex";

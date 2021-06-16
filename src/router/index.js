@@ -1,9 +1,10 @@
 import Vue from "vue";
 import Router from "vue-router";
-import HelloWorld from "@/components/HelloWorld";
-import Signup from "@/components/Signup";
-import Signin from "@/components/Signin";
 import firebase from "firebase";
+import Login from "../components/Login.vue";
+import List from "../components/List.vue";
+import Planning from "../components/Planning.vue";
+import Info from "../components/Info.vue";
 
 Vue.use(Router);
 
@@ -11,23 +12,28 @@ let router = new Router({
   routes: [
     {
       path: "*",
-      redirect: "signin",
+      name: "default",
+      redirect: "/login",
     },
     {
-      path: "/",
-      name: "HelloWorld",
-      component: HelloWorld,
-      meta: { requiresAuth: true },
+      path: "/login",
+      name: "login",
+      component: Login,
     },
     {
-      path: "/signup",
-      name: "Signup",
-      component: Signup,
+      path: "/list",
+      name: "list",
+      component: List,
     },
     {
-      path: "/signin",
-      name: "Signin",
-      component: Signin,
+      path: "/planning",
+      name: "planning",
+      component: Planning,
+    },
+    {
+      path: "/info",
+      name: "info",
+      component: Info,
     },
   ],
 });
@@ -42,7 +48,7 @@ router.beforeEach((to, from, next) => {
         next();
       } else {
         next({
-          path: "/signin",
+          path: "/login",
           query: { redirect: to.fullPath },
         });
       }
