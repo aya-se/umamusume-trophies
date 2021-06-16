@@ -1,13 +1,13 @@
 <template>
   <div>
-    <h1>Login</h1>
-    <p>uid:{{ this.$store.getters.uid }}</p>
-    <button type="button" class="btn btn-default" @click="login">
+    <h1>歓迎ッ！</h1>
+    <p>(名称未定)へようこそ！！！</p>
+    <p>
+      このサイトの利用にはGoogleアカウントでのログインが必要です。下のボタンをクリックするとGoogleの認証画面にリダイレクトします。
+    </p>
+    <el-button type="success" round class="btn btn-default" @click="login">
       ログイン
-    </button>
-    <button type="button" class="btn btn-default" @click="logout">
-      ログアウト
-    </button>
+    </el-button>
   </div>
 </template>
 <script>
@@ -20,6 +20,7 @@ export default {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         this.setLoginUser(user);
+        this.success();
         console.log("is login.");
       } else {
         this.deleteLoginUser();
@@ -27,9 +28,26 @@ export default {
       }
     });
   },
+  mounted() {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        // ログイン後のページに遷移する
+        this.$router.push("/loading");
+      } else {
+        // ログイン失敗。エラー処理など(通常はあり得ない？)
+      }
+    });
+  },
   methods: {
     ...mapActions(["login", "setLoginUser", "logout", "deleteLoginUser"]),
     ...mapGetters(["uid"]),
+    success() {
+      this.$notify({
+        title: "Success",
+        message: "ログインに成功しました！",
+        type: "success",
+      });
+    },
   },
 };
 </script>
