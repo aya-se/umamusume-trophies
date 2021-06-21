@@ -1,41 +1,42 @@
 <template>
   <div id="list">
-    <h1>List</h1>
-    <el-table :data="$store.state.races">
-      <el-table-column
-        fixed
-        prop="name"
-        label="レース名"
-        sortable
-        width="150"
-      />
+    <h1><i class="el-icon-s-grid" />レース一覧表</h1>
+    <el-alert show-icon type="info" :closable="false"
+      >開催される全てのレースの情報を閲覧できます。トロフィー列のボタンではトロフィーの獲得状況を管理でき、ログイン中のアカウントごとにステータスが保存されます。</el-alert
+    >
+    <el-table :data="$store.state.races" height="800" class="table">
+      <el-table-column fixed prop="id" label="レース名" sortable width="150"
+        ><template slot-scope="scope">
+          {{ scope.row.name }}
+        </template></el-table-column
+      >/>
       <el-table-column
         prop="class"
         label="クラス"
         sortable
         width="90"
         :filters="[
-          { text: 'GⅠ', value: 'G1' },
-          { text: 'GⅡ', value: 'G2' },
-          { text: 'GⅡ', value: 'G3' },
+          { text: 'GⅠ', value: 'GⅠ' },
+          { text: 'GⅡ', value: 'GⅡ' },
+          { text: 'GⅡ', value: 'GⅢ' },
           { text: 'OP', value: 'OP' },
           { text: 'Pre-OP', value: 'Pre-OP' },
         ]"
         :filter-method="filterHandler"
       >
         <template slot-scope="scope">
-          <el-tag v-if="scope.row.class === 'G1'" effect="dark" size="small"
+          <el-tag v-if="scope.row.class === 'GⅠ'" effect="dark" size="small"
             >GⅠ</el-tag
           >
           <el-tag
-            v-else-if="scope.row.class === 'G2'"
+            v-else-if="scope.row.class === 'GⅡ'"
             effect="dark"
             type="danger"
             size="small"
             >GⅡ</el-tag
           >
           <el-tag
-            v-else-if="scope.row.class === 'G3'"
+            v-else-if="scope.row.class === 'GⅢ'"
             effect="dark"
             type="success"
             size="small"
@@ -57,7 +58,11 @@
           >
         </template>
       </el-table-column>
-      <el-table-column prop="term" label="時期" sortable width="80" />
+      <el-table-column prop="term_id" label="時期" sortable width="80"
+        ><template slot-scope="scope">
+          {{ scope.row.term }}
+        </template></el-table-column
+      >/>
       <el-table-column
         prop="category"
         label="分類"
@@ -121,13 +126,13 @@
         sortable
         width="50"
         :filters="[
-          { text: '〇', value: true },
-          { text: '×', value: false },
+          { text: '〇', value: 1 },
+          { text: '×', value: 0 },
         ]"
         :filter-method="filterHandler"
       >
         <template slot-scope="scope">
-          <p v-if="scope.row.junior === true">〇</p>
+          <p v-if="scope.row.junior === 1">〇</p>
           <p v-else>×</p>
         </template>
       </el-table-column>
@@ -137,13 +142,13 @@
         sortable
         width="50"
         :filters="[
-          { text: '〇', value: true },
-          { text: '×', value: false },
+          { text: '〇', value: 1 },
+          { text: '×', value: 0 },
         ]"
         :filter-method="filterHandler"
       >
         <template slot-scope="scope">
-          <p v-if="scope.row.classic === true">〇</p>
+          <p v-if="scope.row.classic === 1">〇</p>
           <p v-else>×</p>
         </template></el-table-column
       >
@@ -153,13 +158,13 @@
         sortable
         width="50"
         :filters="[
-          { text: '〇', value: true },
-          { text: '×', value: false },
+          { text: '〇', value: 1 },
+          { text: '×', value: 0 },
         ]"
         :filter-method="filterHandler"
       >
         <template slot-scope="scope">
-          <p v-if="scope.row.senior === true">〇</p>
+          <p v-if="scope.row.senior === 1">〇</p>
           <p v-else>×</p>
         </template>
       </el-table-column>
@@ -201,3 +206,9 @@ export default {
   },
 };
 </script>
+<style scoped>
+.table {
+  margin: 0 auto;
+  max-width: 1000px;
+}
+</style>

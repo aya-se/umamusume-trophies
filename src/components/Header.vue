@@ -2,22 +2,22 @@
   <div id="header">
     <header id="tab" class="tab">
       <router-link to="/" class="link-content">
-        <h1>ウマ娘レース計画ツール(仮)</h1></router-link
+        <h1>ウマ娘レースプランナー(α版)</h1></router-link
       >
       <el-menu mode="horizontal">
         <el-menu-item index="1" class="menu-item"
           ><router-link to="/list" class="link-content">
-            List</router-link
+            レース一覧表</router-link
           ></el-menu-item
         >
         <el-menu-item index="2" class="menu-item"
           ><router-link to="/planning" class="link-content">
-            Planning</router-link
+            レース計画</router-link
           ></el-menu-item
         >
         <el-menu-item index="3" class="menu-item"
           ><router-link to="/info" class="link-content">
-            Info</router-link
+            各種情報</router-link
           ></el-menu-item
         >
       </el-menu>
@@ -42,7 +42,6 @@ export default {
   width: 100%;
   height: auto;
   z-index: 100;
-  background-color: white;
 }
 .menu-item {
   width: 33.33333%;

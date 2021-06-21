@@ -1,13 +1,20 @@
 <template>
   <div class="info">
-    <h1><i class="el-icon-info" /> Infomation</h1>
+    <h1><i class="el-icon-info" /> 各種情報</h1>
     <h3>ステータス情報</h3>
     <p>あなたのuid : {{ this.$store.getters.uid }}</p>
     <el-button type="danger" round class="btn btn-default" @click="logout">
       ログアウト
     </el-button>
-    <h3>機能とか</h3>
-    鋭意開発中です。
+    <h3>現在実装されている機能紹介</h3>
+    <li>Listページから重賞(GⅠ~GⅢ)のレース一覧を閲覧できます。</li>
+    <h3>未実装の機能</h3>
+    <li>Planning機能は全て未実装です。</li>
+    <li>OP,Pre-OPのレースに未対応です。</li>
+    <li>アカウントごとのトロフィー獲得状況管理は未実装です。</li>
+    <li>
+      レスポンシブにはあまり対応できていません。現状ではPCまたはタブレット端末からの閲覧を推奨します。
+    </li>
     <transition name="el-fade-in-linear">
       <div id="account">
         <h1><i class="el-icon-menu" /> Account</h1>
@@ -70,7 +77,6 @@ export default {
       "logout",
       "deleteLoginUser",
       "setLoginStatus",
-      "setLoadingStatus",
       "getCsv",
     ]),
     ...mapGetters(["uid", "isLogin", "isLoading", "races"]),
