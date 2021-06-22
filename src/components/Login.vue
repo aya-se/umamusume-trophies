@@ -1,9 +1,9 @@
 <template>
   <div>
     <h1>歓迎ッ！</h1>
-    <p>(名称未定)へようこそ！！！</p>
+    <p><b>ウマ娘レースプランナー(α版)</b>へようこそ！！！</p>
     <p>
-      このサイトの利用にはGoogleアカウントでのログインが必要です。下のボタンをクリックするとGoogleの認証画面にリダイレクトします。
+      このサイトの利用には<b>Googleアカウント</b>でのログインが必要です。下のボタンをクリックするとGoogleの認証画面にリダイレクトします。
     </p>
     <el-button type="success" round class="btn btn-default" @click="login">
       ログイン

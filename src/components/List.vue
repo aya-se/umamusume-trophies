@@ -1,6 +1,5 @@
 <template>
   <div id="list">
-    {{ trophies }}
     <h1><i class="el-icon-s-grid" />レース一覧表</h1>
     <el-alert show-icon type="info" :closable="false"
       >開催される全てのレースの情報を閲覧できます。トロフィー列のボタンではトロフィーの獲得状況を管理でき、ログイン中のアカウントごとにステータスが保存されます。</el-alert
@@ -209,22 +208,7 @@ export default {
     };
   },
   mounted: function () {
-    var database = firebase.database();
-    database
-      .ref("user_trophies/" + this.$store.getters.uid)
-      .once("value")
-      .then((snapshot) => {
-        this.trophies = JSON.parse(snapshot.val());
-        if (this.trophies === null) this.trophies = [];
-        for (let i = 0; i < this.$store.getters.races.length; i++) {
-          if (this.trophies.includes(this.$store.getters.races[i].id)) {
-            Vue.set(this.$store.state.races[i], "status", true);
-          }
-        }
-      }); //ここアロー関数じゃないと動かない
-  },
-  updated: function () {
-    //this.getTrophies();
+    this.getAndSetTrophies();
   },
   methods: {
     ...mapActions([
@@ -258,7 +242,23 @@ export default {
         this.trophies.splice(this.trophies.indexOf(item.id), 1);
         database.ref(room).set(JSON.stringify(this.trophies));
       }
+      this.getAndSetTrophies();
       return;
+    },
+    getAndSetTrophies() {
+      var database = firebase.database();
+      database
+        .ref("user_trophies/" + this.$store.getters.uid)
+        .once("value")
+        .then((snapshot) => {
+          this.trophies = JSON.parse(snapshot.val());
+          if (this.trophies === null) this.trophies = [];
+          for (let i = 0; i < this.$store.getters.races.length; i++) {
+            if (this.trophies.includes(this.$store.getters.races[i].id)) {
+              Vue.set(this.$store.state.races[i], "status", true);
+            }
+          }
+        }); //ここアロー関数じゃないと動かない
     },
   },
 };
