@@ -3,6 +3,7 @@ import Vuex from "vuex";
 import firebase from "firebase";
 import router from "@/router";
 import races from "@/../public/data/races.json";
+import characters from "@/../public/data/characters.json";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -10,6 +11,7 @@ export default new Vuex.Store({
     login_user: null,
     isLogin: false,
     races: races,
+    characters: characters,
   },
   mutations: {
     setLoginUser(state, user) {

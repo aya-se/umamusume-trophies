@@ -21,10 +21,8 @@ export default {
       if (user) {
         this.setLoginUser(user);
         this.success();
-        console.log("is login.");
       } else {
         this.deleteLoginUser();
-        console.log("No user is signed in.");
       }
     });
   },
