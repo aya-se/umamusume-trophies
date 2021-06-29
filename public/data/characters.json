@@ -13,7 +13,15 @@
 		"style_1": "B",
 		"style_2": "A",
 		"style_3": "A",
-		"style_4": "C"
+		"style_4": "C",
+		"targets": {"URAファイナルズ": [
+							{"id": 1, "name":"きさらぎ賞", "grade": 2},
+							{"id": 2, "name":"日本ダービー", "grade": 2},
+							{"id": 3, "name":"菊花賞", "grade": 2},
+							{"id": 4, "name":"天皇賞\n（春）", "grade": 3},
+							{"id": 5, "name":"ジャパンカップ", "grade": 3},
+							{"id": 6, "name":"有馬記念", "grade": 3}
+					]}
 	},
 	{
 		"id": 2,
