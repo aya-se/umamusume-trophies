@@ -2,7 +2,7 @@
   <div>
     <h1><i class="el-icon-s-opportunity" />レース計画</h1>
     <el-alert show-icon type="warning" :closable="false"
-      >現時点でスペシャルウィークのみ機能します。</el-alert
+      >レースの出走条件を考慮していません。</el-alert
     >
     <el-alert show-icon type="warning" :closable="false"
       ><b>ファン数目標</b>の達成を必ずしも考慮していません
@@ -536,7 +536,7 @@ export default {
           let k = this.calendar[i].races.findIndex((v) => v.isTarget);
           let fan = this.calendar[i].races[k].fan;
           this.dp[i + 1][0] = -1000000;
-          for (let j = 0; j < M; j++) {
+          for (let j = 0; j < N; j++) {
             this.dp[i + 1][j + 1] = this.dp[i][j] + fan; //目標レースに必ず出場
             this.mem[i + 1][j + 1] = k;
           }
@@ -546,7 +546,7 @@ export default {
           this.is_ban_summer &&
           ((36 <= i && i <= 39) || (60 <= i && i <= 63))
         ) {
-          for (let j = 0; j < M + 1; j++) {
+          for (let j = 0; j < N + 1; j++) {
             if (this.dp[i + 1][0] < this.dp[i][j]) {
               this.dp[i + 1][0] = this.dp[i][j]; //レースに出ない場合
               this.mem[i + 1][0] = -1;
@@ -555,14 +555,14 @@ export default {
         }
         //目標レースがない場合
         else {
-          for (let j = 0; j < M + 1; j++) {
+          for (let j = 0; j < N + 1; j++) {
             if (this.dp[i + 1][0] < this.dp[i][j]) {
               this.dp[i + 1][0] = this.dp[i][j]; //レースに出ない場合
               this.mem[i + 1][0] = -1;
             }
             for (let k = 0; k < this.calendar[i].races.length; k++) {
               let fan = this.calendar[i].races[k].fan;
-              if (j !== this.dp[i].length - 1)
+              if (j + 1 <= M)
                 if (this.dp[i + 1][j + 1] < this.dp[i][j] + fan) {
                   this.dp[i + 1][j + 1] = this.dp[i][j] + fan; //k番目のレースに出る場合
                   this.mem[i + 1][j + 1] = k;
