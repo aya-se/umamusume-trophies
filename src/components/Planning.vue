@@ -5,11 +5,10 @@
       >レースの出走条件を考慮していません。</el-alert
     >
     <el-alert show-icon type="warning" :closable="false"
-      ><b>ファン数目標</b>の達成を必ずしも考慮していません
-      (キャラ・設定によっては目標達成できない結果が表示される可能性があります)。</el-alert
+      >スペシャルウィーク・サイレンススズカ・トウカイテイオー・サクラバクシンオー・ハルウララにのみ対応しています。</el-alert
     >
-    <h3>シナリオ選択</h3>
-    <el-form :inline="true" ref="form-scenario">
+    <h3><i class="el-icon-s-flag"></i> シナリオ・キャラクター・戦略選択</h3>
+    <el-form :inline="true" ref="form-scenario" class="form" size="small">
       <el-form-item label="シナリオ">
         <el-select v-model="scenario" placeholder="Select">
           <el-option
@@ -20,15 +19,12 @@
           />
         </el-select>
       </el-form-item>
-    </el-form>
-    <h3>キャラクター選択</h3>
-    <el-form :inline="true" ref="form-chara">
       <el-form-item label="キャラクター">
         <el-select
           v-model="character"
           placeholder="Select"
           value-key="id"
-          @change="setCalendar()"
+          @change="setCalendar(), setFanQuota()"
         >
           <el-option
             v-for="cha in $store.state.characters.filter(function (item) {
@@ -41,195 +37,270 @@
           </el-option>
         </el-select>
       </el-form-item>
-      <el-form-item label="芝">
+      <el-form-item label="戦略">
         <el-select
-          v-model="character.field_1"
+          v-model="strategy"
           placeholder="Select"
-          class="button-app"
+          value-key="name"
           @change="setCalendar()"
         >
           <el-option
-            v-for="app in appropriate"
-            :key="app"
-            :label="app"
-            :value="app"
-          >
-          </el-option>
-        </el-select>
-      </el-form-item>
-      <el-form-item label="ダート">
-        <el-select
-          v-model="character.field_2"
-          placeholder="Select"
-          class="button-app"
-          @change="setCalendar()"
-        >
-          <el-option
-            v-for="app in appropriate"
-            :key="app"
-            :label="app"
-            :value="app"
-          >
-          </el-option>
-        </el-select>
-      </el-form-item>
-      <el-form-item label="短距離">
-        <el-select
-          v-model="character.distance_1"
-          placeholder="Select"
-          class="button-app"
-          @change="setCalendar()"
-        >
-          <el-option
-            v-for="app in appropriate"
-            :key="app"
-            :label="app"
-            :value="app"
-          >
-          </el-option>
-        </el-select>
-      </el-form-item>
-      <el-form-item label="マイル">
-        <el-select
-          v-model="character.distance_2"
-          placeholder="Select"
-          class="button-app"
-          @change="setCalendar()"
-        >
-          <el-option
-            v-for="app in appropriate"
-            :key="app"
-            :label="app"
-            :value="app"
-          >
-          </el-option>
-        </el-select>
-      </el-form-item>
-      <el-form-item label="中距離">
-        <el-select
-          v-model="character.distance_3"
-          placeholder="Select"
-          class="button-app"
-          @change="setCalendar()"
-        >
-          <el-option
-            v-for="app in appropriate"
-            :key="app"
-            :label="app"
-            :value="app"
-          >
-          </el-option>
-        </el-select>
-      </el-form-item>
-      <el-form-item label="長距離">
-        <el-select
-          v-model="character.distance_4"
-          placeholder="Select"
-          class="button-app"
-          @change="setCalendar()"
-        >
-          <el-option
-            v-for="app in appropriate"
-            :key="app"
-            :label="app"
-            :value="app"
+            v-for="str in strategies"
+            :key="str.name"
+            :value="str"
+            :label="str.text"
           >
           </el-option>
         </el-select>
       </el-form-item>
     </el-form>
-    <h3>詳細設定</h3>
-    <el-form :inline="true" ref="form-method">
-      <el-form-item label="出場適正下限">
-        <el-select
-          v-model="min_app"
-          placeholder="Select"
-          class="button-app"
-          @change="setCalendar()"
+    <h3 class="detail-title"><i class="el-icon-s-tools" /> 詳細設定</h3>
+    <el-collapse class="detail-collapse">
+      <el-collapse-item title="">
+        <template slot="title" style="width: 100%"> </template>
+        <el-form :inline="true" ref="form-method" class="form" size="small">
+          <el-form-item label="余裕のあるノルマ達成計画(+%)">
+            <el-input-number
+              v-model="quota_leeway"
+              @change="setCalendar()"
+              :min="0"
+              :step="5"
+              :max="100"
+            >
+            </el-input-number>
+          </el-form-item>
+          <el-form-item label="出場適正下限">
+            <el-select
+              v-model="min_app"
+              placeholder="Select"
+              class="button-app"
+              @change="setCalendar()"
+            >
+              <el-option
+                v-for="app in appropriate"
+                :key="app"
+                :label="app"
+                :value="app"
+              >
+              </el-option>
+            </el-select>
+          </el-form-item>
+          <el-form-item label="ファンボーナス">
+            <el-input-number
+              v-model="fan_bonus"
+              @change="setCalendar()"
+              :min="0"
+              :max="200"
+            >
+            </el-input-number>
+          </el-form-item>
+          <el-form-item label="最大連続出場レース数">
+            <el-input-number
+              v-model="race_limit_num"
+              @change="setCalendar()"
+              :min="0"
+              :max="72"
+            >
+            </el-input-number>
+          </el-form-item>
+          <el-form-item label="夏合宿中は目標外レースに出場しない">
+            <el-switch v-model="is_ban_summer" @change="setCalendar()">
+            </el-switch>
+          </el-form-item>
+          <el-form-item label="フィールド" v-if="false">
+            <el-checkbox v-model="fields[0]" @change="setCalendar()"
+              >芝</el-checkbox
+            >
+            <el-checkbox v-model="fields[1]" @change="setCalendar()"
+              >ダート</el-checkbox
+            >
+          </el-form-item>
+          <el-form-item label="距離" v-if="false">
+            <el-checkbox v-model="distances[0]" @change="setCalendar()"
+              >短距離</el-checkbox
+            >
+            <el-checkbox v-model="distances[1]" @change="setCalendar()"
+              >マイル</el-checkbox
+            >
+            <el-checkbox v-model="distances[2]" @change="setCalendar()"
+              >中距離</el-checkbox
+            >
+            <el-checkbox v-model="distances[3]" @change="setCalendar()"
+              >長距離</el-checkbox
+            >
+          </el-form-item>
+          <br />
+          <el-form-item label="適正調節 (芝/ダ/短/マ/中/長)">
+            <el-select
+              v-model="character.field_1"
+              placeholder="Select"
+              class="button-app"
+              @change="setCalendar()"
+            >
+              <el-option
+                v-for="app in appropriate"
+                :key="app"
+                :label="app"
+                :value="app"
+              >
+              </el-option>
+            </el-select>
+          </el-form-item>
+          <el-form-item label="">
+            <el-select
+              v-model="character.field_2"
+              placeholder="Select"
+              class="button-app"
+              @change="setCalendar()"
+            >
+              <el-option
+                v-for="app in appropriate"
+                :key="app"
+                :label="app"
+                :value="app"
+              >
+              </el-option>
+            </el-select>
+          </el-form-item>
+          <el-form-item label="">
+            <el-select
+              v-model="character.distance_1"
+              placeholder="Select"
+              class="button-app"
+              @change="setCalendar()"
+            >
+              <el-option
+                v-for="app in appropriate"
+                :key="app"
+                :label="app"
+                :value="app"
+              >
+              </el-option>
+            </el-select>
+          </el-form-item>
+          <el-form-item label="">
+            <el-select
+              v-model="character.distance_2"
+              placeholder="Select"
+              class="button-app"
+              @change="setCalendar()"
+            >
+              <el-option
+                v-for="app in appropriate"
+                :key="app"
+                :label="app"
+                :value="app"
+              >
+              </el-option>
+            </el-select>
+          </el-form-item>
+          <el-form-item label="">
+            <el-select
+              v-model="character.distance_3"
+              placeholder="Select"
+              class="button-app"
+              @change="setCalendar()"
+            >
+              <el-option
+                v-for="app in appropriate"
+                :key="app"
+                :label="app"
+                :value="app"
+              >
+              </el-option>
+            </el-select>
+          </el-form-item>
+          <el-form-item label="">
+            <el-select
+              v-model="character.distance_4"
+              placeholder="Select"
+              class="button-app"
+              @change="setCalendar()"
+            >
+              <el-option
+                v-for="app in appropriate"
+                :key="app"
+                :label="app"
+                :value="app"
+              >
+              </el-option>
+            </el-select>
+          </el-form-item>
+          <el-form-item label="クラス">
+            <el-checkbox v-model="classes[0]" @change="setCalendar()"
+              >GⅠ</el-checkbox
+            >
+            <el-checkbox v-model="classes[1]" @change="setCalendar()"
+              >GⅡ</el-checkbox
+            >
+            <el-checkbox v-model="classes[2]" @change="setCalendar()"
+              >GⅢ</el-checkbox
+            >
+            <el-checkbox v-model="classes[3]" @change="setCalendar()"
+              >OP</el-checkbox
+            >
+            <el-checkbox v-model="classes[4]" @change="setCalendar()"
+              >Pre-OP</el-checkbox
+            >
+            <el-checkbox
+              v-model="not_win_only"
+              @change="setCalendar()"
+              v-if="false"
+              >トロフィー未獲得のみ(未整備)</el-checkbox
+            >
+          </el-form-item>
+        </el-form>
+      </el-collapse-item>
+    </el-collapse>
+    <h3 class="quota-title"><i class="el-icon-s-order" />ファン数ノルマ一覧</h3>
+    <el-collapse class="quota-collapse">
+      <el-collapse-item title="">
+        <el-table
+          :data="fan_quota"
+          class="fan-table"
+          align="center"
+          width="auto"
         >
-          <el-option
-            v-for="app in appropriate"
-            :key="app"
-            :label="app"
-            :value="app"
-          >
-          </el-option>
-        </el-select>
-      </el-form-item>
-      <el-form-item label="ファンボーナス">
-        <el-input-number
-          v-model="fan_bonus"
-          @change="setCalendar()"
-          :min="0"
-          :max="100"
-        >
-        </el-input-number>
-      </el-form-item>
-      <el-form-item label="最大連続出場レース数">
-        <el-input-number
-          v-model="race_limit_num"
-          @change="setCalendar()"
-          :min="1"
-          :max="72"
-        >
-        </el-input-number>
-      </el-form-item>
-      <el-form-item label="夏合宿中は目標外レースに出場しない">
-        <el-switch v-model="is_ban_summer" @change="setCalendar()"> </el-switch>
-      </el-form-item>
-      <el-form-item label="フィールド">
-        <el-checkbox v-model="fields[0]" @change="setCalendar()"
-          >芝</el-checkbox
-        >
-        <el-checkbox v-model="fields[1]" @change="setCalendar()"
-          >ダート</el-checkbox
-        >
-      </el-form-item>
-      <el-form-item label="距離">
-        <el-checkbox v-model="distances[0]" @change="setCalendar()"
-          >短距離</el-checkbox
-        >
-        <el-checkbox v-model="distances[1]" @change="setCalendar()"
-          >マイル</el-checkbox
-        >
-        <el-checkbox v-model="distances[2]" @change="setCalendar()"
-          >中距離</el-checkbox
-        >
-        <el-checkbox v-model="distances[3]" @change="setCalendar()"
-          >長距離</el-checkbox
-        >
-      </el-form-item>
-      <el-form-item label="クラス">
-        <el-checkbox v-model="classes[0]" @change="setCalendar()"
-          >GⅠ</el-checkbox
-        >
-        <el-checkbox v-model="classes[1]" @change="setCalendar()"
-          >GⅡ</el-checkbox
-        >
-        <el-checkbox v-model="classes[2]" @change="setCalendar()"
-          >GⅢ</el-checkbox
-        >
-        <el-checkbox v-model="classes[3]" @change="setCalendar()"
-          >OP</el-checkbox
-        >
-        <el-checkbox v-model="classes[4]" @change="setCalendar()"
-          >Pre-OP</el-checkbox
-        >
-        <el-checkbox v-model="not_win_only" @change="setCalendar()"
-          >トロフィー未獲得のみ(未整備)</el-checkbox
-        >
-      </el-form-item>
-    </el-form>
-
-    <h3>レーススケジュール</h3>
-    <p>
-      <b>予想獲得ファン数</b>：{{ fan_sum }} ×
+          <el-table-column prop="term_id" label="時期" sortable width="180"
+            ><template slot-scope="scope">
+              {{ calendar[scope.row.term_id - 1].name }}
+            </template></el-table-column
+          >/>
+          <el-table-column prop="num" label="目標人数" width="90"
+            ><template slot-scope="scope">
+              {{ scope.row.num }}人
+            </template></el-table-column
+          >/>
+          <el-table-column prop="text" label="詳細" width="360" />
+          <el-table-column prop="status" label="有効" width="50"
+            ><template slot-scope="scope">
+              <el-switch
+                v-model="scope.row.status"
+                :disabled="scope.row.type === 'target'"
+                @change="setCalendar()"
+              >
+              </el-switch> </template></el-table-column
+          >/>
+        </el-table>
+      </el-collapse-item>
+    </el-collapse>
+    <h3><i class="el-icon-s-marketing" />レーススケジュール</h3>
+    <el-alert show-icon type="error" :closable="false" v-if="is_failed"
+      >条件を満たすプランが立てられませんでした！ファン数ノルマや出走可能条件の緩和を検討してください。</el-alert
+    >
+    <el-alert show-icon type="success" :closable="false" v-else
+      ><b>予想獲得ファン数</b>：{{ fan_sum }} ×
       {{ (1 + fan_bonus / 100).toFixed(2) }} =
-      {{ (fan_sum * (1 + fan_bonus / 100)).toFixed(0) }}人
-    </p>
+      {{ (fan_sum * (1 + fan_bonus / 100)).toFixed(0) }}人</el-alert
+    >
     <div id="calendar">
       <template v-for="(item, id) in calendar">
-        <el-card class="box-card" :key="id" v-if="12 <= id" shadow="never">
+        <el-card
+          class="box-card"
+          :key="id"
+          v-if="12 <= id && id <= 71"
+          shadow="never"
+        >
           <h4 class="calendar-name">{{ item.name }}</h4>
           <p class="info-text" v-if="item.races.length == 0">
             表示可能なレースがありません
@@ -366,6 +437,7 @@
 import Vue from "vue";
 import { mapActions } from "vuex";
 import { mapGetters } from "vuex";
+import fan_quota from "@/../public/data/fan_quota.json";
 export default {
   data() {
     return {
@@ -376,21 +448,36 @@ export default {
       calendar: [],
       fields: [true, true],
       distances: [true, true, true, true],
-      classes: [true, true, false, false, false],
+      classes: [true, true, true, true, true],
       not_win_only: false,
-      min_app: "B",
+      min_app: "A",
       fan_bonus: 45,
       race_limit_num: 2,
       is_ban_summer: true,
       fan_sum: 0,
-      dp: [], //レースレコメンド計算用のDP2次元配列
-      mem: [], //レースレコメンド復元用の2次元配列
+      fan_debut: 700,
+      fan_extra: 7000 + 10000 + 30000,
+      strategies: [
+        { name: "fan", text: "ファン数最大化(ファン活・金策向け)" },
+        { name: "efficient", text: "ノルマ達成効率重視" },
+        { name: "trophy", text: "トロフィー埋め" },
+      ],
+      strategy: { name: "efficient", text: "ノルマ達成効率重視" },
+      //strategy: { name: "fan", text: "ファン数最大化(ファン活・金策向け)" },
+      quota_leeway: 10,
+      fan_quota: [],
+      dp: [], //レースレコメンド計算用のDP配列(月×連続出走回数×累積出走回数)
+      mem: [], //レースレコメンド復元用の配列
+      is_show_detail: false,
+      is_failed: false,
     };
   },
   mounted: function () {
     this.character = this.$store.state.characters[0];
     for (let i = 0; i < 72; i++) this.calendar.push({});
+    this.calendar.push({ name: "育成終了時" }); //育成終了時(ダミー)
     this.setCalendar();
+    this.setFanQuota();
   },
   methods: {
     ...mapActions([
@@ -406,6 +493,32 @@ export default {
       if (item.isTarget) return "border-red";
       else if (item.isRecommend) return "border-blue";
       else return "";
+    },
+    setFanQuota() {
+      //ファン数目標のリセット
+      this.fan_quota = JSON.parse(JSON.stringify(fan_quota[this.scenario]));
+      //ファン数目標があれば追加
+      let fan_targets = this.character.targets[this.scenarios].filter(
+        (v) => v.type === "fan"
+      );
+      for (let i = 0; i < fan_targets.length; i++) {
+        let ft = fan_targets[i];
+        this.fan_quota.push({
+          id: ft.id,
+          term_id: ft.term_id,
+          num: ft.num,
+          text: this.character.name + "の育成目標",
+          type: "target",
+          status: true,
+        });
+      }
+      this.fan_quota.sort(function (a, b) {
+        return a.term_id - b.term_id;
+      });
+    },
+    onDelete(item) {
+      this.fan_quota = this.fan_quota.filter((v) => v.id !== item.id);
+      this.setCalendar();
     },
     setCalendar() {
       //適性に応じたフィルタ自動変更
@@ -429,8 +542,11 @@ export default {
         Vue.set(this.calendar[i], "races", new Array());
         //目標レースがある場合
         let isTarget = false;
-        for (let j = 0; j < this.character.targets[this.scenario].length; j++) {
-          let target = this.character.targets[this.scenario][j];
+        let race_targets = this.character.targets[this.scenarios].filter(
+          (v) => v.type === "race"
+        );
+        for (let j = 0; j < race_targets.length; j++) {
+          let target = race_targets[j];
           const race = this.$store.getters.races.find(
             (v) => v.name === target.name
           );
@@ -442,7 +558,6 @@ export default {
             Vue.set(this.calendar[i], "isTarget", true);
             let race2 = JSON.parse(JSON.stringify(race));
             race2.isTarget = true;
-            console.log(race.isTarget, race2.isTarget);
             this.calendar[i].races.push(race2);
             break;
           }
@@ -523,22 +638,28 @@ export default {
     },
     calculateDP() {
       // DPテーブルの初期化
+      const INF = 1000000000;
       const N = 72;
       const M = this.race_limit_num;
       for (let i = 0; i < N + 1; i++) {
-        this.dp[i] = new Array(M + 1).fill(-1000000); //初期値は十分に小さな値
-        this.mem[i] = new Array(M + 1).fill(-1); //初期値は-1(レースに出ない)
+        this.dp[i] = [];
+        this.mem[i] = [];
+        for (let j = 0; j < N + 1; j++) {
+          this.dp[i][j] = new Array(N + 1).fill(-INF); //初期値は十分に小さな値
+          this.mem[i][j] = new Array(N + 1).fill(-INF); //初期値は-1(レースに出ない)
+        }
       }
-      this.dp[12][1] = 700; //12ターン目(メイクデビュー)に基礎ファン数700人
+      this.dp[12][1][0] = this.fan_debut; //12ターン目(メイクデビュー)に基礎ファン数700人(累積出走に含めず)
       for (let i = 12; i < N; i++) {
         //目標レースがある場合
         if (this.calendar[i].isTarget) {
-          let k = this.calendar[i].races.findIndex((v) => v.isTarget);
-          let fan = this.calendar[i].races[k].fan;
-          this.dp[i + 1][0] = -1000000;
+          let l = this.calendar[i].races.findIndex((v) => v.isTarget);
+          let fan = this.calendar[i].races[l].fan;
           for (let j = 0; j < N; j++) {
-            this.dp[i + 1][j + 1] = this.dp[i][j] + fan; //目標レースに必ず出場
-            this.mem[i + 1][j + 1] = k;
+            for (let k = 0; k < N; k++) {
+              this.dp[i + 1][j + 1][k + 1] = this.dp[i][j][k] + fan; //目標レースに必ず出場
+              this.mem[i + 1][j + 1][k + 1] = l;
+            }
           }
         }
         //目標レースはないが、夏合宿中はレースに出ない場合
@@ -547,76 +668,145 @@ export default {
           ((36 <= i && i <= 39) || (60 <= i && i <= 63))
         ) {
           for (let j = 0; j < N + 1; j++) {
-            if (this.dp[i + 1][0] < this.dp[i][j]) {
-              this.dp[i + 1][0] = this.dp[i][j]; //レースに出ない場合
-              this.mem[i + 1][0] = -1;
+            for (let k = 0; k < N + 1; k++) {
+              if (this.dp[i + 1][0][k] < this.dp[i][j][k]) {
+                this.dp[i + 1][0][k] = this.dp[i][j][k]; //レースに出ない場合
+                this.mem[i + 1][0][k] = -1;
+              }
             }
           }
         }
         //目標レースがない場合
         else {
           for (let j = 0; j < N + 1; j++) {
-            if (this.dp[i + 1][0] < this.dp[i][j]) {
-              this.dp[i + 1][0] = this.dp[i][j]; //レースに出ない場合
-              this.mem[i + 1][0] = -1;
+            for (let k = 0; k < N + 1; k++) {
+              if (this.dp[i + 1][0][k] < this.dp[i][j][k]) {
+                this.dp[i + 1][0][k] = this.dp[i][j][k]; //レースに出ない場合
+                this.mem[i + 1][0][k] = -1;
+              }
             }
-            for (let k = 0; k < this.calendar[i].races.length; k++) {
-              let fan = this.calendar[i].races[k].fan;
-              if (j + 1 <= M)
-                if (this.dp[i + 1][j + 1] < this.dp[i][j] + fan) {
-                  this.dp[i + 1][j + 1] = this.dp[i][j] + fan; //k番目のレースに出る場合
-                  this.mem[i + 1][j + 1] = k;
-                }
+            for (let k = 0; k < N; k++) {
+              for (let l = 0; l < this.calendar[i].races.length; l++) {
+                let fan = this.calendar[i].races[l].fan;
+                if (j + 1 <= M)
+                  if (this.dp[i + 1][j + 1][k + 1] < this.dp[i][j][k] + fan) {
+                    this.dp[i + 1][j + 1][k + 1] = this.dp[i][j][k] + fan; //k番目のレースに出る場合
+                    this.mem[i + 1][j + 1][k + 1] = l;
+                  }
+              }
+            }
+          }
+        }
+        //ノルマチェック(基準ノルマを満たせていないDPは全て無効化)
+        if (this.fan_quota.some((v) => v.term_id === i + 1 && v.status)) {
+          let quota = this.fan_quota.find(
+            (v) => v.term_id === i + 1 && v.status
+          ).num;
+          for (let j = 0; j < N + 1; j++) {
+            for (let k = 0; k < N + 1; k++) {
+              if (
+                this.dp[i + 1][j][k] * (1 + this.fan_bonus / 100) <
+                quota * (1 + this.quota_leeway / 100)
+              ) {
+                this.dp[i + 1][j][k] = -INF;
+                this.mem[i + 1][j][k] = -1;
+              }
             }
           }
         }
       }
-      let max_dp = 0;
+      //エクストラシナリオ分のファン数追加
       for (let j = 0; j < N + 1; j++) {
-        if (this.dp[N][max_dp] < this.dp[N][j]) {
-          max_dp = j;
+        for (let k = 0; k < N + 1; k++) {
+          this.dp[N][j][k] += this.fan_extra;
         }
+      }
+      //最終ノルマチェック(基準ノルマを満たせていないDPは全て無効化)
+      if (this.fan_quota.some((v) => v.term_id === N + 1 && v.status)) {
+        let quota = this.fan_quota.find(
+          (v) => v.term_id === N + 1 && v.status
+        ).num;
+        for (let j = 0; j < N + 1; j++) {
+          for (let k = 0; k < N + 1; k++) {
+            if (
+              this.dp[N][j][k] * (1 + this.fan_bonus / 100) <
+              quota * (1 + this.quota_leeway / 100)
+            ) {
+              this.dp[N][j][k] = -INF;
+              this.mem[N][j][k] = -1;
+            }
+          }
+        }
+      }
+      let best_j = 0;
+      let best_k = 0;
+      this.is_failed = true; //一瞬trueにする
+      //戦略がfanもしくはtrophyの場合(ファン数重視)
+      if (this.strategy.name !== "efficient") {
+        let max_j = 0;
+        let max_k = 0;
+        for (let j = 0; j < N + 1; j++) {
+          for (let k = 0; k < N + 1; k++) {
+            if (
+              this.dp[N][j][k] > 0 &&
+              this.dp[N][max_j][max_k] <= this.dp[N][j][k]
+            ) {
+              max_j = j;
+              max_k = k;
+              this.is_failed = false;
+            }
+          }
+        }
+        best_j = max_j;
+        best_k = max_k;
+      }
+      //戦略がefficientの場合(目標達成可能な最小出場回数重視)
+      else if (this.strategy.name === "efficient") {
+        let max_j = 0;
+        let max_k = INF;
+        for (let j = 0; j < N + 1; j++) {
+          for (let k = 0; k < N + 1; k++) {
+            if (
+              this.dp[N][j][k] > 0 &&
+              (k < max_k ||
+                (k === max_k && this.dp[N][max_j][max_k] < this.dp[N][j][k]))
+            ) {
+              max_j = j;
+              max_k = k;
+              this.is_failed = false;
+            }
+          }
+        }
+        best_j = max_j;
+        best_k = max_k;
       }
       // レコメンドレースの復元(レコメンド属性の登録)
-      this.fan_sum = this.dp[N][max_dp];
-      let idx = max_dp;
-      for (let i = N; i >= 1; i--) {
-        //レース復元
-        if (this.mem[i][idx] >= 0 && idx >= 1) {
+      this.fan_sum = this.dp[N][best_j][best_k]; //表示用の基礎数値登録
+      let j = best_j;
+      let k = best_k;
+      for (let i = N; i >= 13; i--) {
+        //直近はレースに出場したというパターン
+        if (j > 0) {
+          //出場したレースの復元
           if (this.calendar[i - 1].isTarget === false) {
-            this.calendar[i - 1].races[this.mem[i][idx]].isRecommend = true;
+            this.calendar[i - 1].races[this.mem[i][j][k]].isRecommend = true;
           }
-          console.log(
-            i +
-              " " +
-              this.calendar[i - 1].name +
-              " " +
-              this.calendar[i - 1].races[this.mem[i][idx]].name +
-              " " +
-              idx +
-              " " +
-              this.dp[i][idx]
-          );
+          //インデックスの更新(遷移前は必ずdp[i-1][j-1][k-1]のはずである)
+          j--;
+          k--;
         }
-        for (let j = 0; j < N + 1; j++) {
-          if (this.mem[i][idx] === -1) {
-            if (this.dp[i - 1][j] === this.dp[i][idx]) {
-              idx = j;
-              break;
-            }
-          } else if (this.mem[i][idx] >= 0) {
-            if (
-              this.dp[i - 1][j] +
-                this.calendar[i - 1].races[this.mem[i][idx]].fan ===
-              this.dp[i][idx]
-            ) {
-              idx = j;
+        //直近はレースに出ていないというパターン
+        else if (j === 0) {
+          //遷移前の検索(遷移前はdp[i-1][j][k]のはずである)
+          for (let j2 = 0; j2 < N + 1; j2++) {
+            if (this.dp[i - 1][j2][k] === this.dp[i][j][k]) {
+              j = j2;
               break;
             }
           }
         }
       }
-      console.log(this.dp);
+      //console.log(this.dp);
     },
   },
 };
@@ -627,8 +817,37 @@ export default {
 /deep/ .el-card__body {
   padding: 10px !important;
 }
+.detail-collapse {
+  position: relative;
+  z-index: 0;
+}
+.detail-title {
+  position: absolute;
+  width: 100px;
+  left: 0;
+  right: 0;
+  padding-top: 10px;
+  margin: auto;
+  z-index: 1;
+}
+.quota-collapse {
+  position: relative;
+  z-index: 0;
+}
+.quota-title {
+  position: absolute;
+  width: 200px;
+  left: 0;
+  right: 0;
+  padding-top: 10px;
+  margin: auto;
+  z-index: 1;
+}
 #calendar {
   display: table;
+}
+.form {
+  border-color: lightgray;
 }
 .box-card {
   overflow-y: visible;

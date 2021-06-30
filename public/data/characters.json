@@ -15,12 +15,12 @@
 		"style_3": "A",
 		"style_4": "C",
 		"targets": {"URAファイナルズ": [
-			{"id": 1, "name":"きさらぎ賞", "grade": 2},
-			{"id": 2, "name":"日本ダービー", "grade": 2},
-			{"id": 3, "name":"菊花賞", "grade": 2},
-			{"id": 4, "name":"天皇賞\n（春）", "grade": 3},
-			{"id": 5, "name":"ジャパンカップ", "grade": 3},
-			{"id": 6, "name":"有馬記念", "grade": 3}
+			{"id": 1, "type":"race", "name":"きさらぎ賞", "grade": 2},
+			{"id": 2, "type":"race", "name":"日本ダービー", "grade": 2},
+			{"id": 3, "type":"race", "name":"菊花賞", "grade": 2},
+			{"id": 4, "type":"race", "name":"天皇賞\n（春）", "grade": 3},
+			{"id": 5, "type":"race", "name":"ジャパンカップ", "grade": 3},
+			{"id": 6, "type":"race", "name":"有馬記念", "grade": 3}
 		]}
 	},
 	{
@@ -39,12 +39,13 @@
 		"style_3": "E",
 		"style_4": "G",
 		"targets": {"URAファイナルズ": [
-			{"id": 1, "name":"弥生賞", "grade": 2},
-			{"id": 2, "name":"神戸新聞杯", "grade": 2},
-			{"id": 3, "name":"金鯱賞", "grade": 3},
-			{"id": 4, "name":"宝塚記念", "grade": 3},
-			{"id": 5, "name":"毎日王冠", "grade": 3},
-			{"id": 6, "name":"天皇賞\n（秋）", "grade": 3}
+			{"id": 1, "type":"race", "name":"弥生賞", "grade": 2},
+			{"id": 2, "type":"race", "name":"神戸新聞杯", "grade": 2},
+			{"id": 3, "type":"race", "name":"金鯱賞", "grade": 3},
+			{"id": 4, "type":"race", "name":"宝塚記念", "grade": 3},
+			{"id": 5, "type":"race", "name":"毎日王冠", "grade": 3},
+			{"id": 6, "type":"race", "name":"天皇賞\n（秋）", "grade": 3},
+			{"id": 101, "type":"fan","term_id":27, "num":5000}
 		]}
 	},
 	{
@@ -63,13 +64,13 @@
 		"style_3": "C",
 		"style_4": "E",
 		"targets": {"URAファイナルズ": [
-			{"id": 1, "name":"若駒S", "grade": 2},
-			{"id": 2, "name":"皐月賞", "grade": 2},
-			{"id": 3, "name":"日本ダービー", "grade": 2},
-			{"id": 4, "name":"菊花賞", "grade": 2},
-			{"id": 5, "name":"天皇賞\n（春）", "grade": 3},
-			{"id": 6, "name":"ジャパンカップ", "grade": 3},
-			{"id": 7, "name":"有馬記念", "grade": 3}
+			{"id": 1, "type":"race", "name":"若駒S", "grade": 2},
+			{"id": 2, "type":"race", "name":"皐月賞", "grade": 2},
+			{"id": 3, "type":"race", "name":"日本ダービー", "grade": 2},
+			{"id": 4, "type":"race", "name":"菊花賞", "grade": 2},
+			{"id": 5, "type":"race", "name":"天皇賞\n（春）", "grade": 3},
+			{"id": 6, "type":"race", "name":"ジャパンカップ", "grade": 3},
+			{"id": 7, "type":"race", "name":"有馬記念", "grade": 3}
 		]}
 	},
 	{
@@ -680,16 +681,16 @@
 		"style_3": "F",
 		"style_4": "G",
 		"targets": {"URAファイナルズ": [
-			{"id": 1, "name":"京王杯ジュニアS", "grade": 1},
-			{"id": 2, "name":"スプリングS", "grade": 2},
-			{"id": 3, "name":"葵S", "grade": 2},
-			{"id": 4, "name":"スプリンターズS", "grade": 2},
-			{"id": 5, "name":"高松宮記念", "grade": 3},
-			{"id": 6, "name":"函館スプリントS", "grade": 3},
-			{"id": 7, "name":"CBC賞", "grade": 3},
-			{"id": 7, "name":"セントウルS", "grade": 3},
-			{"id": 7, "name":"スプリンターズS", "grade": 3},
-			{"id": 7, "name":"マイルCS", "grade": 3}
+			{"id": 1, "type":"race", "name":"京王杯ジュニアS", "grade": 1},
+			{"id": 2, "type":"race", "name":"スプリングS", "grade": 2},
+			{"id": 3, "type":"race", "name":"葵S", "grade": 2},
+			{"id": 4, "type":"race", "name":"スプリンターズS", "grade": 2},
+			{"id": 5, "type":"race", "name":"高松宮記念", "grade": 3},
+			{"id": 6, "type":"race", "name":"函館スプリントS", "grade": 3},
+			{"id": 7, "type":"race", "name":"CBC賞", "grade": 3},
+			{"id": 7, "type":"race", "name":"セントウルS", "grade": 3},
+			{"id": 7, "type":"race", "name":"スプリンターズS", "grade": 3},
+			{"id": 7, "type":"race", "name":"マイルCS", "grade": 3}
 		]}
 	},
 	{
@@ -868,11 +869,14 @@
 		"style_3": "A",
 		"style_4": "B",
 		"targets": {"URAファイナルズ": [
-			{"id": 1, "name":"根岸S", "grade": 3},
-			{"id": 2, "name":"フェブラリーS", "grade": 3},
-			{"id": 3, "name":"エルムS", "grade": 3},
-			{"id": 4, "name":"JBCスプリント", "grade": 3},
-			{"id": 5, "name":"有馬記念", "grade": 3}
+			{"id": 1, "type":"race", "name":"根岸S", "grade": 3},
+			{"id": 2, "type":"race", "name":"フェブラリーS", "grade": 3},
+			{"id": 3, "type":"race", "name":"エルムS", "grade": 3},
+			{"id": 4, "type":"race", "name":"JBCスプリント", "grade": 3},
+			{"id": 5, "type":"race", "name":"有馬記念", "grade": 3},
+			{"id": 101, "type":"fan","term_id":37, "num":5000},
+			{"id": 102, "type":"fan","term_id":45, "num":9000},
+			{"id": 103, "type":"fan","term_id":48, "num":12000}
 		]}
 	},
 	{

@@ -1,0 +1,52 @@
+{
+	"URAファイナルズ": [
+        {
+            "id":1,
+            "term_id":45,
+            "num":50000,
+            "text":"『二人三脚』(\"鋼の意志\"・賢さ+20・スキルPt+20)",
+            "type":"optional",
+            "status":true
+        },
+        {
+            "id":2,
+            "term_id":48,
+            "num":100000,
+            "text":"『にんじん大農園にて』(スキルPt+30)",
+            "type":"optional",
+            "status":true
+        },
+        {   
+            "id":3,
+            "term_id":51,
+            "num":60000,
+            "text":"バレンタイン (固有スキルLvUP)",
+            "type":"unique",
+            "status":true
+        },
+        {   
+            "id":4,
+            "term_id":55,
+            "num":70000,
+            "text":"ファン感謝祭 (固有スキルLvUP+やる気UP)",
+            "type":"unique",
+            "status":true
+        },
+        {   
+            "id":5,
+            "term_id":72,
+            "num":120000,
+            "text":"クリスマス (固有スキルLvUP)",
+            "type":"unique",
+            "status":true
+        },
+        {   
+            "id":6,
+            "term_id":73,
+            "num":340000,
+            "text":"レジェンド達成",
+            "type":"optional",
+            "status":true
+        }
+    ]
+}
