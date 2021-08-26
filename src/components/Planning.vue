@@ -2,10 +2,7 @@
   <div>
     <h1><i class="el-icon-s-opportunity" />レース計画</h1>
     <el-alert show-icon type="warning" :closable="false"
-      >フジキセキの目標分岐は三冠路線に固定しています。</el-alert
-    >
-    <el-alert show-icon type="warning" :closable="false"
-      >マチカネフクキタルの第2・7目標ランダム抽選は毎日杯・函館記念に固定しています。</el-alert
+      >一部、未実装または不十分な機能があります。詳細は「各種情報」ページをご覧ください。</el-alert
     >
     <h3><i class="el-icon-s-flag"></i> シナリオ・キャラクター・戦略選択</h3>
     <el-form :inline="true" ref="form-scenario" class="form" size="small">
