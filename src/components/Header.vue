@@ -2,7 +2,7 @@
   <div id="header">
     <header id="tab" class="tab">
       <router-link to="/" class="link-content">
-        <h1>ウマ娘レースプランナー(β)</h1></router-link
+        <h1>ウマ娘レースプランナー(γ)</h1></router-link
       >
       <el-menu mode="horizontal">
         <el-menu-item index="1" class="menu-item"

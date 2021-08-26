@@ -19,7 +19,7 @@
 			{"id": 2, "type":"race", "name":"日本ダービー", "grade": 2},
 			{"id": 3, "type":"race", "name":"菊花賞", "grade": 2},
 			{"id": 4, "type":"race", "name":"天皇賞\n（春）", "grade": 3},
-			{"id": 5, "type":"race", "name":"ジャパンカップ", "grade": 3},
+			{"id": 5, "type":"race", "name":"ジャパンC", "grade": 3},
 			{"id": 6, "type":"race", "name":"有馬記念", "grade": 3}
 		]}
 	},
@@ -69,7 +69,7 @@
 			{"id": 3, "type":"race", "name":"日本ダービー", "grade": 2},
 			{"id": 4, "type":"race", "name":"菊花賞", "grade": 2},
 			{"id": 5, "type":"race", "name":"天皇賞\n（春）", "grade": 3},
-			{"id": 6, "type":"race", "name":"ジャパンカップ", "grade": 3},
+			{"id": 6, "type":"race", "name":"ジャパンC", "grade": 3},
 			{"id": 7, "type":"race", "name":"有馬記念", "grade": 3}
 		]}
 	},
@@ -87,23 +87,44 @@
 		"style_1": "A",
 		"style_2": "E",
 		"style_3": "G",
-		"style_4": "G"
+		"style_4": "G",
+		"targets": {"URAファイナルズ": [
+			{"id": 1, "type":"race", "name":"朝日杯FS", "grade": 1},
+			{"id": 2, "type":"race", "name":"スプリングS", "grade": 2},
+			{"id": 3, "type":"race", "name":"皐月賞", "grade": 2},
+			{"id": 4, "type":"race", "name":"日本ダービー", "grade": 2},
+			{"id": 5, "type":"race", "name":"有馬記念", "grade": 2},
+			{"id": 6, "type":"race", "name":"大阪杯", "grade": 3},
+			{"id": 7, "type":"race", "name":"安田記念", "grade": 3},
+			{"id": 8, "type":"race", "name":"天皇賞\n（秋）", "grade": 3}
+		]}
 	},
 	{
 		"id": 5,
 		"name": "フジキセキ",
-		"rarity": 0,
-		"flag": 0,
+		"rarity": 3,
+		"flag": 1,
 		"field_1": "A",
-		"field_2": "A",
-		"distance_1": "A",
+		"field_2": "F",
+		"distance_1": "B",
 		"distance_2": "A",
-		"distance_3": "A",
-		"distance_4": "A",
-		"style_1": "A",
+		"distance_3": "B",
+		"distance_4": "E",
+		"style_1": "C",
 		"style_2": "A",
-		"style_3": "A",
-		"style_4": "A"
+		"style_3": "C",
+		"style_4": "G",
+		"targets": {"URAファイナルズ": [
+			{"id": 1, "type":"race", "name":"朝日杯FS", "grade": 1},
+			{"id": 2, "type":"race", "name":"弥生賞", "grade": 2},
+			{"id": 3, "type":"race", "name":"皐月賞", "grade": 2},
+			{"id": 4, "type":"race", "name":"日本ダービー", "grade": 2},
+			{"id": 5, "type":"race", "name":"菊花賞", "grade": 2},
+			{"id": 6, "type":"race", "name":"高松宮記念", "grade": 3},
+			{"id": 7, "type":"race", "name":"安田記念", "grade": 3},
+			{"id": 8, "type":"race", "name":"天皇賞\n（秋）", "grade": 3},
+			{"id": 9, "type":"race", "name":"有馬記念", "grade": 3}
+		]}
 	},
 	{
 		"id": 6,
@@ -119,7 +140,15 @@
 		"style_1": "F",
 		"style_2": "A",
 		"style_3": "A",
-		"style_4": "D"
+		"style_4": "D",
+		"targets": {"URAファイナルズ": [
+			{"id": 1, "type":"race", "name":"NHKマイルC", "grade": 2},
+			{"id": 2, "type":"race", "name":"マイルCS", "grade": 2},
+			{"id": 3, "type":"race", "name":"有馬記念", "grade": 2},
+			{"id": 4, "type":"race", "name":"天皇賞\n（秋）", "grade": 3},
+			{"id": 5, "type":"race", "name":"有馬記念", "grade": 3},
+			{"id": 101, "type":"fan","term_id":24, "num":3000}
+		]}
 	},
 	{
 		"id": 7,
@@ -135,7 +164,17 @@
 		"style_1": "G",
 		"style_2": "B",
 		"style_3": "B",
-		"style_4": "A"
+		"style_4": "A",
+		"targets": {"URAファイナルズ": [
+			{"id": 1, "type":"race", "name":"ホープフルS", "grade": 2},
+			{"id": 2, "type":"race", "name":"皐月賞", "grade": 2},
+			{"id": 3, "type":"race", "name":"菊花賞", "grade": 2},
+			{"id": 4, "type":"race", "name":"有馬記念", "grade": 2},
+			{"id": 5, "type":"race", "name":"天皇賞\n（春）", "grade": 3},
+			{"id": 6, "type":"race", "name":"宝塚記念", "grade": 3},
+			{"id": 7, "type":"race", "name":"天皇賞\n（秋）", "grade": 3},
+			{"id": 8, "type":"race", "name":"有馬記念", "grade": 3}
+		]}
 	},
 	{
 		"id": 8,
@@ -151,7 +190,18 @@
 		"style_1": "C",
 		"style_2": "B",
 		"style_3": "A",
-		"style_4": "F"
+		"style_4": "F",
+		"targets": {"URAファイナルズ": [
+			{"id": 1, "type":"race", "name":"阪神JF", "grade": 1},
+			{"id": 2, "type":"race", "name":"チューリップ賞", "grade": 2},
+			{"id": 3, "type":"race", "name":"桜花賞", "grade": 2},
+			{"id": 4, "type":"race", "name":"日本ダービー", "grade": 2},
+			{"id": 5, "type":"race", "name":"秋華賞", "grade": 2},
+			{"id": 6, "type":"race", "name":"有馬記念", "grade": 2},
+			{"id": 7, "type":"race", "name":"ヴィクトリアマイル", "grade": 3},
+			{"id": 8, "type":"race", "name":"安田記念", "grade": 3},
+			{"id": 9, "type":"race", "name":"天皇賞\n（秋）", "grade": 3}
+		]}
 	},
 	{
 		"id": 9,
@@ -167,7 +217,17 @@
 		"style_1": "D",
 		"style_2": "A",
 		"style_3": "B",
-		"style_4": "G"
+		"style_4": "G",
+		"targets": {"URAファイナルズ": [
+			{"id": 1, "type":"race", "name":"チューリップ賞", "grade": 2},
+			{"id": 2, "type":"race", "name":"桜花賞", "grade": 2},
+			{"id": 3, "type":"race", "name":"オークス", "grade": 2},
+			{"id": 4, "type":"race", "name":"秋華賞", "grade": 2},
+			{"id": 5, "type":"race", "name":"エリザベス女王杯", "grade": 3},
+			{"id": 6, "type":"race", "name":"大阪杯", "grade": 3},
+			{"id": 7, "type":"race", "name":"天皇賞\n（秋）", "grade": 3},
+			{"id": 8, "type":"race", "name":"有馬記念", "grade": 3}
+		]}
 	},
 	{
 		"id": 10,
@@ -183,7 +243,16 @@
 		"style_1": "C",
 		"style_2": "A",
 		"style_3": "E",
-		"style_4": "G"
+		"style_4": "G",
+		"targets": {"URAファイナルズ": [
+			{"id": 1, "type":"race", "name":"シンザン記念", "grade": 2},
+			{"id": 2, "type":"race", "name":"NHKマイルC", "grade": 2},
+			{"id": 3, "type":"race", "name":"ユニコーンS", "grade": 2},
+			{"id": 4, "type":"race", "name":"マイルCS", "grade": 2},
+			{"id": 5, "type":"race", "name":"安田記念", "grade": 3},
+			{"id": 6, "type":"race", "name":"スプリンターズS", "grade": 3},
+			{"id": 7, "type":"race", "name":"マイルCS", "grade": 3}
+		]}
 	},
 	{
 		"id": 11,
@@ -199,7 +268,16 @@
 		"style_1": "F",
 		"style_2": "A",
 		"style_3": "A",
-		"style_4": "F"
+		"style_4": "F",
+		"targets": {"URAファイナルズ": [
+			{"id": 1, "type":"race", "name":"朝日杯FS", "grade": 1},
+			{"id": 2, "type":"race", "name":"日本ダービー", "grade": 2},
+			{"id": 3, "type":"race", "name":"ジャパンC", "grade": 2},
+			{"id": 4, "type":"race", "name":"有馬記念", "grade": 2},
+			{"id": 5, "type":"race", "name":"宝塚記念", "grade": 3},
+			{"id": 6, "type":"race", "name":"毎日王冠", "grade": 3},
+			{"id": 7, "type":"race", "name":"有馬記念", "grade": 3}
+		]}
 	},
 	{
 		"id": 12,
@@ -215,7 +293,18 @@
 		"style_1": "G",
 		"style_2": "B",
 		"style_3": "C",
-		"style_4": "A"
+		"style_4": "A",
+		"targets": {"URAファイナルズ": [
+			{"id": 1, "type":"race", "name":"阪神JF", "grade": 1},
+			{"id": 2, "type":"race", "name":"桜花賞", "grade": 2},
+			{"id": 3, "type":"race", "name":"オークス", "grade": 2},
+			{"id": 4, "type":"race", "name":"秋華賞", "grade": 2},
+			{"id": 5, "type":"race", "name":"有馬記念", "grade": 2},
+			{"id": 6, "type":"race", "name":"大阪杯", "grade": 3},
+			{"id": 7, "type":"race", "name":"安田記念", "grade": 3},
+			{"id": 8, "type":"race", "name":"ジャパンC", "grade": 3},
+			{"id": 9, "type":"race", "name":"有馬記念", "grade": 3}
+		]}
 	},
 	{
 		"id": 13,
@@ -231,7 +320,15 @@
 		"style_1": "B",
 		"style_2": "A",
 		"style_3": "D",
-		"style_4": "F"
+		"style_4": "F",
+		"targets": {"URAファイナルズ": [
+			{"id": 1, "type":"race", "name":"神戸新聞杯", "grade": 2},
+			{"id": 2, "type":"race", "name":"菊花賞", "grade": 2},
+			{"id": 3, "type":"race", "name":"天皇賞\n（春）", "grade": 3},
+			{"id": 4, "type":"race", "name":"宝塚記念", "grade": 3},
+			{"id": 5, "type":"race", "name":"天皇賞\n（秋）", "grade": 3},
+			{"id": 101, "type":"fan","term_id":24, "num":3000}
+		]}
 	},
 	{
 		"id": 14,
@@ -247,7 +344,16 @@
 		"style_1": "E",
 		"style_2": "A",
 		"style_3": "A",
-		"style_4": "C"
+		"style_4": "C",
+		"targets": {"URAファイナルズ": [
+			{"id": 1, "type":"race", "name":"共同通信杯", "grade": 2},
+			{"id": 2, "type":"race", "name":"NHKマイルC", "grade": 2},
+			{"id": 3, "type":"race", "name":"日本ダービー", "grade": 2},
+			{"id": 4, "type":"race", "name":"毎日王冠", "grade": 2},
+			{"id": 5, "type":"race", "name":"宝塚記念", "grade": 3},
+			{"id": 6, "type":"race", "name":"ジャパンC", "grade": 3},
+			{"id": 7, "type":"race", "name":"有馬記念", "grade": 3}
+		]}
 	},
 	{
 		"id": 15,
@@ -263,7 +369,17 @@
 		"style_1": "C",
 		"style_2": "A",
 		"style_3": "A",
-		"style_4": "G"
+		"style_4": "G",
+		"targets": {"URAファイナルズ": [
+			{"id": 1, "type":"race", "name":"皐月賞", "grade": 2},
+			{"id": 2, "type":"race", "name":"日本ダービー", "grade": 2},
+			{"id": 3, "type":"race", "name":"有馬記念", "grade": 2},
+			{"id": 4, "type":"race", "name":"天皇賞\n（春）", "grade": 3},
+			{"id": 5, "type":"race", "name":"宝塚記念", "grade": 3},
+			{"id": 6, "type":"race", "name":"ジャパンC", "grade": 3},
+			{"id": 7, "type":"race", "name":"有馬記念", "grade": 3},
+			{"id": 101, "type":"fan","term_id":27, "num":3000}
+		]}
 	},
 	{
 		"id": 16,
@@ -279,7 +395,19 @@
 		"style_1": "G",
 		"style_2": "A",
 		"style_3": "A",
-		"style_4": "D"
+		"style_4": "D",
+		"targets": {"URAファイナルズ": [
+			{"id": 1, "type":"race", "name":"朝日杯FS", "grade": 1},
+			{"id": 2, "type":"race", "name":"皐月賞", "grade": 2},
+			{"id": 3, "type":"race", "name":"日本ダービー", "grade": 2},
+			{"id": 4, "type":"race", "name":"菊花賞", "grade": 2},
+			{"id": 5, "type":"race", "name":"有馬記念", "grade": 2},
+			{"id": 6, "type":"race", "name":"阪神大賞典", "grade": 3},
+			{"id": 7, "type":"race", "name":"天皇賞\n（春）", "grade": 3},
+			{"id": 8, "type":"race", "name":"天皇賞\n（秋）", "grade": 3},
+			{"id": 9, "type":"race", "name":"ジャパンC", "grade": 3},
+			{"id": 10, "type":"race", "name":"有馬記念", "grade": 3}
+		]}
 	},
 	{
 		"id": 17,
@@ -295,7 +423,17 @@
 		"style_1": "B",
 		"style_2": "A",
 		"style_3": "A",
-		"style_4": "C"
+		"style_4": "C",
+		"targets": {"URAファイナルズ": [
+			{"id": 1, "type":"race", "name":"サウジアラビアRC", "grade": 1},
+			{"id": 2, "type":"race", "name":"皐月賞", "grade": 2},
+			{"id": 3, "type":"race", "name":"日本ダービー", "grade": 2},
+			{"id": 4, "type":"race", "name":"菊花賞", "grade": 2},
+			{"id": 5, "type":"race", "name":"有馬記念", "grade": 2},
+			{"id": 6, "type":"race", "name":"天皇賞\n（春）", "grade": 3},
+			{"id": 7, "type":"race", "name":"ジャパンC", "grade": 3},
+			{"id": 8, "type":"race", "name":"有馬記念", "grade": 3}
+		]}
 	},
 	{
 		"id": 18,
@@ -311,7 +449,17 @@
 		"style_1": "D",
 		"style_2": "A",
 		"style_3": "A",
-		"style_4": "G"
+		"style_4": "G",
+		"targets": {"URAファイナルズ": [
+			{"id": 1, "type":"race", "name":"阪神JF", "grade": 1},
+			{"id": 2, "type":"race", "name":"桜花賞", "grade": 2},
+			{"id": 3, "type":"race", "name":"オークス", "grade": 2},
+			{"id": 4, "type":"race", "name":"秋華賞", "grade": 2},
+			{"id": 5, "type":"race", "name":"大阪杯", "grade": 3},
+			{"id": 6, "type":"race", "name":"宝塚記念", "grade": 3},
+			{"id": 7, "type":"race", "name":"札幌記念", "grade": 3},
+			{"id": 8, "type":"race", "name":"天皇賞\n（秋）", "grade": 3}
+		]}
 	},
 	{
 		"id": 19,
@@ -359,7 +507,18 @@
 		"style_1": "A",
 		"style_2": "B",
 		"style_3": "D",
-		"style_4": "E"
+		"style_4": "E",
+		"targets": {"URAファイナルズ": [
+			{"id": 1, "type":"race", "name":"皐月賞", "grade": 2},
+			{"id": 2, "type":"race", "name":"日本ダービー", "grade": 2},
+			{"id": 3, "type":"race", "name":"菊花賞", "grade": 2},
+			{"id": 4, "type":"race", "name":"有馬記念", "grade": 2},
+			{"id": 5, "type":"race", "name":"天皇賞\n（春）", "grade": 3},
+			{"id": 6, "type":"race", "name":"宝塚記念", "grade": 3},
+			{"id": 7, "type":"race", "name":"天皇賞\n（秋）", "grade": 3},
+			{"id": 8, "type":"race", "name":"有馬記念", "grade": 3},
+			{"id": 101, "type":"fan","term_id":24, "num":3000}
+		]}
 	},
 	{
 		"id": 22,
@@ -391,7 +550,17 @@
 		"style_1": "E",
 		"style_2": "A",
 		"style_3": "B",
-		"style_4": "E"
+		"style_4": "E",
+		"targets": {"URAファイナルズ": [
+			{"id": 1, "type":"race", "name":"朝日杯FS", "grade": 1},
+			{"id": 2, "type":"race", "name":"皐月賞", "grade": 2},
+			{"id": 3, "type":"race", "name":"日本ダービー", "grade": 2},
+			{"id": 4, "type":"race", "name":"菊花賞", "grade": 2},
+			{"id": 5, "type":"race", "name":"天皇賞\n（春）", "grade": 3},
+			{"id": 6, "type":"race", "name":"宝塚記念", "grade": 3},
+			{"id": 7, "type":"race", "name":"天皇賞\n（秋）", "grade": 3},
+			{"id": 8, "type":"race", "name":"有馬記念", "grade": 3}
+		]}
 	},
 	{
 		"id": 24,
@@ -407,7 +576,17 @@
 		"style_1": "A",
 		"style_2": "A",
 		"style_3": "B",
-		"style_4": "B"
+		"style_4": "B",
+		"targets": {"URAファイナルズ": [
+			{"id": 1, "type":"race", "name":"菊花賞", "grade": 2},
+			{"id": 2, "type":"race", "name":"有馬記念", "grade": 2},
+			{"id": 3, "type":"race", "name":"阪神大賞典", "grade": 3},
+			{"id": 4, "type":"race", "name":"天皇賞\n（春）", "grade": 3},
+			{"id": 5, "type":"race", "name":"宝塚記念", "grade": 3},
+			{"id": 6, "type":"race", "name":"天皇賞\n（秋）", "grade": 3},
+			{"id": 7, "type":"race", "name":"有馬記念", "grade": 3},
+			{"id": 101, "type":"fan","term_id":37, "num":10000}
+		]}
 	},
 	{
 		"id": 25,
@@ -439,7 +618,17 @@
 		"style_1": "A",
 		"style_2": "E",
 		"style_3": "G",
-		"style_4": "G"
+		"style_4": "G",
+		"targets": {"URAファイナルズ": [
+			{"id": 1, "type":"race", "name":"朝日杯FS", "grade": 1},
+			{"id": 2, "type":"race", "name":"スプリングS", "grade": 2},
+			{"id": 3, "type":"race", "name":"皐月賞", "grade": 2},
+			{"id": 4, "type":"race", "name":"日本ダービー", "grade": 2},
+			{"id": 5, "type":"race", "name":"菊花賞", "grade": 2},
+			{"id": 6, "type":"race", "name":"天皇賞\n（春）", "grade": 3},
+			{"id": 7, "type":"race", "name":"ジャパンC", "grade": 3},
+			{"id": 8, "type":"race", "name":"有馬記念", "grade": 3}
+		]}
 	},
 	{
 		"id": 27,
@@ -455,7 +644,17 @@
 		"style_1": "F",
 		"style_2": "A",
 		"style_3": "A",
-		"style_4": "F"
+		"style_4": "F",
+		"targets": {"URAファイナルズ": [
+			{"id": 1, "type":"race", "name":"ジュニアC", "grade": 2},
+			{"id": 2, "type":"race", "name":"皐月賞", "grade": 2},
+			{"id": 3, "type":"race", "name":"日本ダービー", "grade": 2},
+			{"id": 4, "type":"race", "name":"菊花賞", "grade": 2},
+			{"id": 5, "type":"race", "name":"有馬記念", "grade": 2},
+			{"id": 6, "type":"race", "name":"天皇賞\n（春）", "grade": 3},
+			{"id": 7, "type":"race", "name":"宝塚記念", "grade": 3},
+			{"id": 8, "type":"race", "name":"有馬記念", "grade": 3}
+		]}
 	},
 	{
 		"id": 28,
@@ -503,7 +702,16 @@
 		"style_1": "B",
 		"style_2": "A",
 		"style_3": "C",
-		"style_4": "G"
+		"style_4": "G",
+		"targets": {"URAファイナルズ": [
+			{"id": 1, "type":"race", "name":"スプリングS", "grade": 2},
+			{"id": 3, "type":"race", "name":"日本ダービー", "grade": 2},
+			{"id": 4, "type":"race", "name":"菊花賞", "grade": 2},
+			{"id": 5, "type":"race", "name":"日経賞", "grade": 3},
+			{"id": 6, "type":"race", "name":"天皇賞\n（春）", "grade": 3},
+			{"id": 7, "type":"race", "name":"宝塚記念", "grade": 3},
+			{"id": 8, "type":"race", "name":"有馬記念", "grade": 3}
+		]}
 	},
 	{
 		"id": 31,
@@ -535,7 +743,17 @@
 		"style_1": "E",
 		"style_2": "A",
 		"style_3": "B",
-		"style_4": "F"
+		"style_4": "F",
+		"targets": {"URAファイナルズ": [
+			{"id": 1, "type":"race", "name":"弥生賞", "grade": 2},
+			{"id": 2, "type":"race", "name":"皐月賞", "grade": 2},
+			{"id": 3, "type":"race", "name":"日本ダービー", "grade": 2},
+			{"id": 4, "type":"race", "name":"菊花賞", "grade": 2},
+			{"id": 5, "type":"race", "name":"大阪杯", "grade": 3},
+			{"id": 6, "type":"race", "name":"宝塚記念", "grade": 3},
+			{"id": 7, "type":"race", "name":"天皇賞\n（秋）", "grade": 3},
+			{"id": 8, "type":"race", "name":"有馬記念", "grade": 3}
+		]}
 	},
 	{
 		"id": 33,
@@ -583,7 +801,17 @@
 		"style_1": "G",
 		"style_2": "B",
 		"style_3": "A",
-		"style_4": "G"
+		"style_4": "G",
+		"targets": {"URAファイナルズ": [
+			{"id": 1, "type":"race", "name":"ホープフルS", "grade": 1},
+			{"id": 2, "type":"race", "name":"弥生賞", "grade": 2},
+			{"id": 3, "type":"race", "name":"皐月賞", "grade": 2},
+			{"id": 4, "type":"race", "name":"日本ダービー", "grade": 2},
+			{"id": 5, "type":"race", "name":"菊花賞", "grade": 2},
+			{"id": 6, "type":"race", "name":"大阪杯", "grade": 3},
+			{"id": 7, "type":"race", "name":"宝塚記念", "grade": 3},
+			{"id": 8, "type":"race", "name":"有馬記念", "grade": 3}
+		]}
 	},
 	{
 		"id": 36,
@@ -604,18 +832,29 @@
 	{
 		"id": 37,
 		"name": "エイシンフラッシュ",
-		"rarity": 0,
-		"flag": 0,
+		"rarity": 3,
+		"flag": 1,
 		"field_1": "A",
-		"field_2": "A",
-		"distance_1": "A",
-		"distance_2": "A",
+		"field_2": "G",
+		"distance_1": "G",
+		"distance_2": "F",
 		"distance_3": "A",
 		"distance_4": "A",
-		"style_1": "A",
-		"style_2": "A",
+		"style_1": "G",
+		"style_2": "B",
 		"style_3": "A",
-		"style_4": "A"
+		"style_4": "C",
+		"targets": {"URAファイナルズ": [
+			{"id": 1, "type":"race", "name":"京成杯", "grade": 2},
+			{"id": 2, "type":"race", "name":"皐月賞", "grade": 2},
+			{"id": 3, "type":"race", "name":"日本ダービー", "grade": 2},
+			{"id": 4, "type":"race", "name":"ジャパンC", "grade": 2},
+			{"id": 5, "type":"race", "name":"有馬記念", "grade": 2},
+			{"id": 6, "type":"race", "name":"大阪杯", "grade": 3},
+			{"id": 7, "type":"race", "name":"天皇賞\n（春）", "grade": 3},
+			{"id": 8, "type":"race", "name":"天皇賞\n（秋）", "grade": 3},
+			{"id": 9, "type":"race", "name":"有馬記念", "grade": 3}
+		]}
 	},
 	{
 		"id": 38,
@@ -631,7 +870,17 @@
 		"style_1": "B",
 		"style_2": "A",
 		"style_3": "E",
-		"style_4": "G"
+		"style_4": "G",
+		"targets": {"URAファイナルズ": [
+			{"id": 1, "type":"race", "name":"フィリーズレビュー", "grade": 2},
+			{"id": 2, "type":"race", "name":"葵S", "grade": 2},
+			{"id": 3, "type":"race", "name":"函館スプリントS", "grade": 2},
+			{"id": 4, "type":"race", "name":"スプリンターズS", "grade": 2},
+			{"id": 5, "type":"race", "name":"オーシャンS", "grade": 3},
+			{"id": 6, "type":"race", "name":"高松宮記念", "grade": 3},
+			{"id": 7, "type":"race", "name":"スプリンターズS", "grade": 3},
+			{"id": 101, "type":"fan","term_id":24, "num":3000}
+		]}
 	},
 	{
 		"id": 39,
@@ -652,18 +901,29 @@
 	{
 		"id": 40,
 		"name": "ゴールドシチー",
-		"rarity": 0,
-		"flag": 0,
+		"rarity": 3,
+		"flag": 1,
 		"field_1": "A",
-		"field_2": "A",
-		"distance_1": "A",
+		"field_2": "D",
+		"distance_1": "F",
 		"distance_2": "A",
-		"distance_3": "A",
-		"distance_4": "A",
-		"style_1": "A",
+		"distance_3": "B",
+		"distance_4": "B",
+		"style_1": "F",
 		"style_2": "A",
 		"style_3": "A",
-		"style_4": "A"
+		"style_4": "F",
+		"targets": {"URAファイナルズ": [
+			{"id": 1, "type":"race", "name":"阪神JF", "grade": 1},
+			{"id": 2, "type":"race", "name":"皐月賞", "grade": 2},
+			{"id": 3, "type":"race", "name":"日本ダービー", "grade": 2},
+			{"id": 4, "type":"race", "name":"菊花賞", "grade": 2},
+			{"id": 5, "type":"race", "name":"有馬記念", "grade": 2},
+			{"id": 6, "type":"race", "name":"大阪杯", "grade": 3},
+			{"id": 7, "type":"race", "name":"天皇賞\n（春）", "grade": 3},
+			{"id": 8, "type":"race", "name":"宝塚記念", "grade": 3},
+			{"id": 9, "type":"race", "name":"ジャパンC", "grade": 3}
+		]}
 	},
 	{
 		"id": 41,
@@ -755,7 +1015,16 @@
 		"style_1": "D",
 		"style_2": "A",
 		"style_3": "B",
-		"style_4": "G"
+		"style_4": "G",
+		"targets": {"URAファイナルズ": [
+			{"id": 1, "type":"race", "name":"すみれS", "grade": 2},
+			{"id": 2, "type":"race", "name":"菊花賞", "grade": 2},
+			{"id": 3, "type":"race", "name":"有馬記念", "grade": 2},
+			{"id": 4, "type":"race", "name":"大阪杯", "grade": 3},
+			{"id": 5, "type":"race", "name":"天皇賞\n（春）", "grade": 3},
+			{"id": 6, "type":"race", "name":"天皇賞\n（秋）", "grade": 3},
+			{"id": 7, "type":"race", "name":"有馬記念", "grade": 3}
+		]}
 	},
 	{
 		"id": 46,
@@ -771,7 +1040,18 @@
 		"style_1": "A",
 		"style_2": "D",
 		"style_3": "G",
-		"style_4": "G"
+		"style_4": "G",
+		"targets": {"URAファイナルズ": [
+			{"id": 1, "type":"race", "name":"皐月賞", "grade": 2},
+			{"id": 2, "type":"race", "name":"ジャパンダートダービー", "grade": 2},
+			{"id": 3, "type":"race", "name":"JBCクラシック", "grade": 2},
+			{"id": 4, "type":"race", "name":"東京大賞典", "grade": 2},
+			{"id": 5, "type":"race", "name":"フェブラリーS", "grade": 3},
+			{"id": 6, "type":"race", "name":"帝王賞", "grade": 3},
+			{"id": 7, "type":"race", "name":"JBCクラシック", "grade": 3},
+			{"id": 8, "type":"race", "name":"チャンピョンズC", "grade": 3},
+			{"id": 9, "type":"race", "name":"東京大賞典", "grade": 3}
+		]}
 	},
 	{
 		"id": 47,
@@ -835,7 +1115,17 @@
 		"style_1": "G",
 		"style_2": "F",
 		"style_3": "B",
-		"style_4": "A"
+		"style_4": "A",
+		"targets": {"URAファイナルズ": [
+			{"id": 1, "type":"race", "name":"ホープフルS", "grade": 1},
+			{"id": 2, "type":"race", "name":"皐月賞", "grade": 2},
+			{"id": 3, "type":"race", "name":"日本ダービー", "grade": 2},
+			{"id": 4, "type":"race", "name":"菊花賞", "grade": 2},
+			{"id": 5, "type":"race", "name":"日経賞", "grade": 3},
+			{"id": 6, "type":"race", "name":"天皇賞\n（春）", "grade": 3},
+			{"id": 7, "type":"race", "name":"天皇賞\n（秋）", "grade": 3},
+			{"id": 8, "type":"race", "name":"有馬記念", "grade": 3}
+		]}
 	},
 	{
 		"id": 51,
@@ -941,7 +1231,16 @@
 		"style_1": "G",
 		"style_2": "B",
 		"style_3": "A",
-		"style_4": "F"
+		"style_4": "F",
+		"targets": {"URAファイナルズ": [
+			{"id": 1, "type":"race", "name":"毎日杯", "grade": 2},
+			{"id": 2, "type":"race", "name":"日本ダービー", "grade": 2},
+			{"id": 3, "type":"race", "name":"菊花賞", "grade": 2},
+			{"id": 4, "type":"race", "name":"金鯱賞", "grade": 3},
+			{"id": 5, "type":"race", "name":"宝塚記念", "grade": 3},
+			{"id": 6, "type":"race", "name":"函館記念", "grade": 3},
+			{"id": 7, "type":"race", "name":"有馬記念", "grade": 3}
+		]}
 	},
 	{
 		"id": 57,
@@ -962,18 +1261,28 @@
 	{
 		"id": 58,
 		"name": "メイショウドトウ",
-		"rarity": 0,
-		"flag": 0,
+		"rarity": 3,
+		"flag": 1,
 		"field_1": "A",
-		"field_2": "A",
-		"distance_1": "A",
-		"distance_2": "A",
+		"field_2": "E",
+		"distance_1": "G",
+		"distance_2": "F",
 		"distance_3": "A",
 		"distance_4": "A",
-		"style_1": "A",
+		"style_1": "F",
 		"style_2": "A",
-		"style_3": "A",
-		"style_4": "A"
+		"style_3": "B",
+		"style_4": "E",
+		"targets": {"URAファイナルズ": [
+			{"id": 4, "type":"race", "name":"日経新春杯", "grade": 3},
+			{"id": 5, "type":"race", "name":"金鯱賞", "grade": 3},
+			{"id": 6, "type":"race", "name":"宝塚記念", "grade": 3},
+			{"id": 7, "type":"race", "name":"天皇賞\n（秋）", "grade": 3},
+			{"id": 8, "type":"race", "name":"ジャパンC", "grade": 3},
+			{"id": 8, "type":"race", "name":"有馬記念", "grade": 3},
+			{"id": 101, "type":"fan","term_id":31, "num":6000},
+			{"id": 102, "type":"fan","term_id":44, "num":15000}
+		]}
 	},
 	{
 		"id": 59,
@@ -1005,7 +1314,17 @@
 		"style_1": "F",
 		"style_2": "B",
 		"style_3": "A",
-		"style_4": "D"
+		"style_4": "D",
+		"targets": {"URAファイナルズ": [
+			{"id": 1, "type":"race", "name":"若駒S", "grade": 2},
+			{"id": 2, "type":"race", "name":"小倉記念", "grade": 2},
+			{"id": 3, "type":"race", "name":"菊花賞", "grade": 2},
+			{"id": 4, "type":"race", "name":"有馬記念", "grade": 2},
+			{"id": 5, "type":"race", "name":"宝塚記念", "grade": 3},
+			{"id": 6, "type":"race", "name":"天皇賞\n（秋）", "grade": 3},
+			{"id": 7, "type":"race", "name":"中日新聞杯", "grade": 3},
+			{"id": 8, "type":"race", "name":"有馬記念", "grade": 3}
+		]}
 	},
 	{
 		"id": 61,
@@ -1021,7 +1340,17 @@
 		"style_1": "G",
 		"style_2": "B",
 		"style_3": "A",
-		"style_4": "D"
+		"style_4": "D",
+		"targets": {"URAファイナルズ": [
+			{"id": 1, "type":"race", "name":"ホープフルS", "grade": 1},
+			{"id": 2, "type":"race", "name":"皐月賞", "grade": 2},
+			{"id": 3, "type":"race", "name":"日本ダービー", "grade": 2},
+			{"id": 4, "type":"race", "name":"菊花賞", "grade": 2},
+			{"id": 5, "type":"race", "name":"高松宮記念", "grade": 3},
+			{"id": 6, "type":"race", "name":"安田記念", "grade": 3},
+			{"id": 7, "type":"race", "name":"スプリンターズS", "grade": 3},
+			{"id": 8, "type":"race", "name":"天皇賞\n（秋）", "grade": 3}
+		]}
 	},
 	{
 		"id": 62,
@@ -1182,85 +1511,5 @@
 		"style_2": "A",
 		"style_3": "A",
 		"style_4": "A"
-	},
-	{
-		"id": 72,
-		"name": "ヤエノムテキ",
-		"rarity": 0,
-		"flag": 0,
-		"field_1": "A",
-		"field_2": "A",
-		"distance_1": "A",
-		"distance_2": "A",
-		"distance_3": "A",
-		"distance_4": "A",
-		"style_1": "A",
-		"style_2": "A",
-		"style_3": "A",
-		"style_4": "A"
-	},
-	{
-		"id": 73,
-		"name": "新トウカイテイオー",
-		"rarity": 3,
-		"flag": 1,
-		"field_1": "A",
-		"field_2": "G",
-		"distance_1": "F",
-		"distance_2": "E",
-		"distance_3": "A",
-		"distance_4": "B",
-		"style_1": "D",
-		"style_2": "A",
-		"style_3": "C",
-		"style_4": "E"
-	},
-	{
-		"id": 74,
-		"name": "新メジロマックイーン",
-		"rarity": 3,
-		"flag": 1,
-		"field_1": "A",
-		"field_2": "E",
-		"distance_1": "G",
-		"distance_2": "F",
-		"distance_3": "A",
-		"distance_4": "A",
-		"style_1": "B",
-		"style_2": "A",
-		"style_3": "D",
-		"style_4": "F"
-	},
-	{
-		"id": 75,
-		"name": "花嫁マヤノトップガン",
-		"rarity": 3,
-		"flag": 1,
-		"field_1": "A",
-		"field_2": "E",
-		"distance_1": "D",
-		"distance_2": "D",
-		"distance_3": "A",
-		"distance_4": "A",
-		"style_1": "A",
-		"style_2": "A",
-		"style_3": "B",
-		"style_4": "B"
-	},
-	{
-		"id": 76,
-		"name": "花嫁エアグルーヴ",
-		"rarity": 3,
-		"flag": 1,
-		"field_1": "A",
-		"field_2": "G",
-		"distance_1": "C",
-		"distance_2": "B",
-		"distance_3": "A",
-		"distance_4": "E",
-		"style_1": "D",
-		"style_2": "A",
-		"style_3": "A",
-		"style_4": "G"
 	}
 ]

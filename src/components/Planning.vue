@@ -2,10 +2,10 @@
   <div>
     <h1><i class="el-icon-s-opportunity" />レース計画</h1>
     <el-alert show-icon type="warning" :closable="false"
-      >レースの出走条件を考慮していません。</el-alert
+      >フジキセキの目標分岐は三冠路線に固定しています。</el-alert
     >
     <el-alert show-icon type="warning" :closable="false"
-      >スペシャルウィーク・サイレンススズカ・トウカイテイオー・サクラバクシンオー・ハルウララにのみ対応しています。</el-alert
+      >マチカネフクキタルの第2・7目標ランダム抽選は毎日杯・函館記念に固定しています。</el-alert
     >
     <h3><i class="el-icon-s-flag"></i> シナリオ・キャラクター・戦略選択</h3>
     <el-form :inline="true" ref="form-scenario" class="form" size="small">
@@ -24,7 +24,7 @@
           v-model="character"
           placeholder="Select"
           value-key="id"
-          @change="setCalendar(), setFanQuota()"
+          @change="setFanQuota(), setCalendar()"
         >
           <el-option
             v-for="cha in $store.state.characters.filter(function (item) {
@@ -476,8 +476,8 @@ export default {
     this.character = this.$store.state.characters[0];
     for (let i = 0; i < 72; i++) this.calendar.push({});
     this.calendar.push({ name: "育成終了時" }); //育成終了時(ダミー)
-    this.setCalendar();
     this.setFanQuota();
+    this.setCalendar();
   },
   methods: {
     ...mapActions([
