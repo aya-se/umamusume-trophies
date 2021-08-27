@@ -15,7 +15,7 @@ let router = new Router({
     {
       path: "*",
       name: "default",
-      redirect: "/list",
+      redirect: "/planning",
     },
     {
       path: "/login",
@@ -53,10 +53,10 @@ router.beforeEach((to, from, next) => {
   if (requiresAuth) {
     firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
-        console.log("ログイン済");
+        //console.log("ログイン済");
         next();
       } else {
-        console.log("リダイレクトします");
+        //console.log("リダイレクトします");
         next({
           path: "/login",
           query: { redirect: "/login" },

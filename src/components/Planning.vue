@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1><i class="el-icon-s-opportunity" />レース計画</h1>
+    <h2><i class="el-icon-s-opportunity" />レース計画</h2>
     <el-alert show-icon type="warning" :closable="false"
       >一部、未実装または不十分な機能があります。詳細は「各種情報」ページをご覧ください。</el-alert
     >
@@ -457,10 +457,8 @@ export default {
       strategies: [
         { name: "fan", text: "ファン数最大化(ファン活・金策向け)" },
         { name: "efficient", text: "ノルマ達成効率重視" },
-        { name: "trophy", text: "トロフィー埋め" },
-      ],
+      ], // { name: "trophy", text: "トロフィー埋め" },
       strategy: { name: "efficient", text: "ノルマ達成効率重視" },
-      //strategy: { name: "fan", text: "ファン数最大化(ファン活・金策向け)" },
       quota_leeway: 10,
       fan_quota: [],
       dp: [], //レースレコメンド計算用のDP配列(月×連続出走回数×累積出走回数)
@@ -633,6 +631,26 @@ export default {
       }
       this.calculateDP();
     },
+    checkAppropriate(i, j) {
+      let race = this.calendar[i].races[j];
+      let app_cnt = 0;
+      let app_field = "";
+      let app_distance = "";
+      //フィールド
+      if (race.field === "芝") app_field = this.character.field_1;
+      else if (race.field === "ダート") app_field = this.character.field_2;
+      //距離
+      if (race.category === "短距離") app_distance = this.character.distance_1;
+      else if (race.category === "マイル")
+        app_distance = this.character.distance_2;
+      else if (race.category === "中距離")
+        app_distance = this.character.distance_3;
+      else if (race.category === "長距離")
+        app_distance = this.character.distance_4;
+      app_cnt += app_field.charCodeAt(0) - 65;
+      app_cnt += app_distance.charCodeAt(0) - 65;
+      return app_cnt;
+    },
     calculateDP() {
       // DPテーブルの初期化
       const INF = 1000000000;
@@ -652,6 +670,8 @@ export default {
         if (this.calendar[i].isTarget) {
           let l = this.calendar[i].races.findIndex((v) => v.isTarget);
           let fan = this.calendar[i].races[l].fan;
+          //適正が2段階以上低いレースは勝利しないものと想定
+          if (this.checkAppropriate(i, l) >= 2) fan = 0;
           for (let j = 0; j < N; j++) {
             for (let k = 0; k < N; k++) {
               this.dp[i + 1][j + 1][k + 1] = this.dp[i][j][k] + fan; //目標レースに必ず出場
@@ -667,6 +687,7 @@ export default {
           for (let j = 0; j < N + 1; j++) {
             for (let k = 0; k < N + 1; k++) {
               if (this.dp[i + 1][0][k] < this.dp[i][j][k]) {
+                //適正チェック
                 this.dp[i + 1][0][k] = this.dp[i][j][k]; //レースに出ない場合
                 this.mem[i + 1][0][k] = -1;
               }
@@ -685,6 +706,8 @@ export default {
             for (let k = 0; k < N; k++) {
               for (let l = 0; l < this.calendar[i].races.length; l++) {
                 let fan = this.calendar[i].races[l].fan;
+                //適正が2段階以上低いレースは勝利しないものと想定
+                if (this.checkAppropriate(i, l) >= 2) fan = 0;
                 if (j + 1 <= M)
                   if (this.dp[i + 1][j + 1][k + 1] < this.dp[i][j][k] + fan) {
                     this.dp[i + 1][j + 1][k + 1] = this.dp[i][j][k] + fan; //k番目のレースに出る場合
@@ -811,8 +834,17 @@ export default {
 <style scoped>
 @media screen and (min-width: 480px) {
 }
+/deep/ .el-alert {
+  margin-left: 10px !important;
+  margin-right: 10px !important;
+  width: auto !important;
+}
 /deep/ .el-card__body {
   padding: 10px !important;
+}
+/deep/ .el-form-item__label {
+  padding-right: 10px !important;
+  padding-left: 10px !important;
 }
 .detail-collapse {
   position: relative;
@@ -820,7 +852,7 @@ export default {
 }
 .detail-title {
   position: absolute;
-  width: 100px;
+  width: 110px;
   left: 0;
   right: 0;
   padding-top: 10px;

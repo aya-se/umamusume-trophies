@@ -1,6 +1,6 @@
 <template>
   <div id="list">
-    <h1><i class="el-icon-s-grid" />レース一覧表</h1>
+    <h2><i class="el-icon-s-grid" />レース一覧表</h2>
     <el-alert show-icon type="info" :closable="false"
       >開催される全てのレースの情報を閲覧できます。トロフィー列のボタンではトロフィーの獲得状況を管理でき、ログイン中のアカウントごとにステータスが保存されます。</el-alert
     >
@@ -264,6 +264,15 @@ export default {
 };
 </script>
 <style scoped>
+/deep/ .el-alert {
+  margin-left: 10px !important;
+  margin-right: 10px !important;
+  width: auto !important;
+}
+/deep/ [class*="_column"] {
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+}
 .table {
   margin: 0 auto;
   max-width: 1000px;

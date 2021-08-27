@@ -2,25 +2,17 @@
   <div id="header">
     <header id="tab" class="tab">
       <router-link to="/" class="link-content">
-        <h1>ウマ娘レースプランナー(γ)</h1></router-link
+        <h3 class="link-text">ウマ娘レースプランナー</h3></router-link
       >
-      <el-menu mode="horizontal">
-        <el-menu-item index="1" class="menu-item"
-          ><router-link to="/list" class="link-content">
-            レース一覧表</router-link
-          ></el-menu-item
-        >
-        <el-menu-item index="2" class="menu-item"
-          ><router-link to="/planning" class="link-content">
-            レース計画</router-link
-          ></el-menu-item
-        >
-        <el-menu-item index="3" class="menu-item"
-          ><router-link to="/info" class="link-content">
-            各種情報</router-link
-          ></el-menu-item
-        >
-      </el-menu>
+      <router-link to="/list" class="link-content">
+        <i class="el-icon-s-grid" />レース一覧表
+      </router-link>
+      <router-link to="/planning" class="link-content">
+        <i class="el-icon-s-opportunity" />レース計画
+      </router-link>
+      <router-link to="/info" class="link-content">
+        <i class="el-icon-info" />各種情報
+      </router-link>
     </header>
   </div>
 </template>
@@ -41,14 +33,28 @@ export default {
 #header {
   width: 100%;
   height: auto;
+  padding-top: 15px;
+  padding-bottom: 15px;
   z-index: 100;
+  background-color: rgb(48, 48, 48);
+}
+.menu {
+  display: inline-block;
 }
 .menu-item {
-  width: 33.33333%;
+  width: 120px;
+  padding: 0px !important;
+  margin: 0px !important;
+}
+.link-text {
+  display: inline-block;
+  margin: 0px;
 }
 .link-content {
   text-decoration: none;
-  color: #2c3e50;
+  color: lightgray !important;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 .link-content:visited {
   color: #2c3e50;

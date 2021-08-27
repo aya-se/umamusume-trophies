@@ -17,11 +17,11 @@ export default {
       if (user) {
         this.setLoginUser(user);
         this.setLoginStatus(true);
-        console.log("is login.");
+        //console.log("is login.");
       } else {
         this.deleteLoginUser();
         this.setLoginStatus(false);
-        console.log("No user is signed in.");
+        //console.log("No user is signed in.");
       }
     });
   },
@@ -41,6 +41,9 @@ export default {
 
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap");
+body {
+  margin: 0px;
+}
 #app {
   font-family: "Noto Sans JP", serif;
   -webkit-font-smoothing: antialiased;

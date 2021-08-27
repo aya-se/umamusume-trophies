@@ -1,6 +1,6 @@
 <template>
   <div class="info">
-    <h1><i class="el-icon-info" /> 各種情報</h1>
+    <h2><i class="el-icon-info" /> 各種情報</h2>
     <h3>ステータス情報</h3>
     <p>あなたのuid : {{ this.$store.getters.uid }}</p>
     <el-button type="danger" round class="btn btn-default" @click="logout">
@@ -14,7 +14,7 @@
           レース一覧表ページから重賞(GⅠ~GⅢ)の各レースについてトロフィーの獲得状況を管理できます。獲得状況はアカウントごとに保存されます。
         </li>
         <li>
-          レース計画ページで出場レースのプランニングができます。<b>「ファン数最大化」・「ノルマ達成効率重視」</b>の2つの戦略が利用可能であり、さらに特定の時期までに特定のファン数を稼ぐ<b>「ファン数ノルマ」</b>(キャラ目標・シナリオイベント)の達成を考慮することができます。
+          レース計画ページで出場レースのプランニングができます。<b>「ファン数最大化」・「ノルマ達成効率重視」</b>の2つの戦略が利用可能であり、さらに特定の時期までに特定のファン数を稼ぐ<b>「ファン数ノルマ」</b>(キャラ目標・シナリオイベント)の達成を考慮することができます。適正の合わないレースに出走する場合(いわゆる「負けイベント」)ではファン数をカウントしないように配慮しています。
         </li>
       </div>
     </el-card>
@@ -29,9 +29,6 @@
         </li>
         <li>
           レース計画機能において、各レースの出走条件を考慮していません(今後実装予定)。
-        </li>
-        <li>
-          レース計画機能において、いわゆる「負けイベント」でも1着のファン数を獲得する扱いになっています。
         </li>
         <li>
           レース計画機能において、オグリキャップ・スマートファルコンの○回1着目標に対応していません(今後実装予定)。
@@ -55,10 +52,10 @@
     </el-card>
     <transition name="el-fade-in-linear">
       <div id="account">
-        <h1><i class="el-icon-menu" /> Account</h1>
+        <h2><i class="el-icon-menu" /> Accounts</h2>
         <el-card class="box-card2" shadow="hover">
           <el-link target="_blank" href="https://twitter.com/Hakuba_snow"
-            ><h3>Twitter</h3></el-link
+            >Twitter</el-link
           >
           <p>
             <img class="box-image" src="../assets/twitter.png" />
@@ -69,7 +66,7 @@
           <el-link
             target="_blank"
             href="https://www.youtube.com/channel/UCW4FH8oKhHE8vIRnr0StJ8g"
-            ><h3>Youtube</h3></el-link
+            >Youtube</el-link
           >
           <p>
             <img class="box-image" src="../assets/youtube.png" />
@@ -77,7 +74,7 @@
         </el-card>
         <el-card class="box-card2" shadow="hover">
           <el-link target="_blank" href="https://www.nicovideo.jp/series/183850"
-            ><h3>NicoNico</h3></el-link
+            >NicoNico</el-link
           >
           <p>
             <img class="box-image" src="../assets/niconico.png" />
@@ -87,7 +84,7 @@
     </transition>
     <transition name="el-fade-in-linear">
       <div id="contact">
-        <h1><i class="el-icon-s-comment" /> Contact</h1>
+        <h2><i class="el-icon-s-comment" /> Contacts</h2>
         <p><b>Gmail： </b>kakkeno1@gmail.com</p>
         <p><b>Twitter： </b>@Hakuba_snow</p>
       </div>
@@ -163,19 +160,19 @@ export default {
   }
 }
 .box-card-info {
-  width: 90%;
+  width: 95%;
   height: auto;
   margin: auto;
   margin-top: 10px;
 }
 .box-card2 {
   display: inline-block;
-  width: 260px;
-  height: auto;
-  margin: 10px;
+  width: 150px;
+  height: 180px;
+  margin: 5px;
 }
 .box-image {
-  height: 160px;
+  height: 80px;
 }
 .timeline {
   width: auto;
