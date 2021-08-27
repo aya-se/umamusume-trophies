@@ -656,6 +656,17 @@ export default {
     setFanQuota() {
       //ファン数目標のリセット
       this.fan_quota = JSON.parse(JSON.stringify(fan_quota[this.scenario]));
+      //一部のダートウマ娘のみ条件緩和あり
+      if (
+        this.character.name === "ハルウララ" ||
+        this.character.name === "スマートファルコン"
+      ) {
+        if (this.scenario === "URAファイナルズ") {
+          this.fan_quota.find((item) => item.id === 3).num = 40000;
+          this.fan_quota.find((item) => item.id === 4).num = 60000;
+          this.fan_quota.find((item) => item.id === 5).num = 80000;
+        }
+      }
       //ファン数目標があれば追加
       let fan_targets = this.character.targets[this.scenarios].filter(
         (v) => v.type === "fan"
@@ -822,6 +833,11 @@ export default {
       app_cnt += app_distance.charCodeAt(0) - 65;
       return app_cnt;
     },
+    checkRequirement(i, j) {
+      let race = this.calendar[i].races[j];
+      if (race.class === "OP" || race.class === "Pre-OP") return 375;
+      else return race.requirement;
+    },
     calculateDP() {
       // DPテーブルの初期化
       const INF = 1000000000;
@@ -845,8 +861,13 @@ export default {
           if (this.checkAppropriate(i, l) >= 2) fan = 0;
           for (let j = 0; j < N; j++) {
             for (let k = 0; k < N; k++) {
-              this.dp[i + 1][j + 1][k + 1] = this.dp[i][j][k] + fan; //目標レースに必ず出場
-              this.mem[i + 1][j + 1][k + 1] = l;
+              if (
+                this.checkRequirement(i, l) <=
+                this.dp[i][j][k] * (1 + this.fan_bonus / 100)
+              ) {
+                this.dp[i + 1][j + 1][k + 1] = this.dp[i][j][k] + fan; //目標レースに必ず出場
+                this.mem[i + 1][j + 1][k + 1] = l;
+              }
             }
           }
         }
@@ -881,8 +902,13 @@ export default {
                 if (this.checkAppropriate(i, l) >= 2) fan = 0;
                 if (j + 1 <= M)
                   if (this.dp[i + 1][j + 1][k + 1] < this.dp[i][j][k] + fan) {
-                    this.dp[i + 1][j + 1][k + 1] = this.dp[i][j][k] + fan; //k番目のレースに出る場合
-                    this.mem[i + 1][j + 1][k + 1] = l;
+                    if (
+                      this.checkRequirement(i, l) <=
+                      this.dp[i][j][k] * (1 + this.fan_bonus / 100)
+                    ) {
+                      this.dp[i + 1][j + 1][k + 1] = this.dp[i][j][k] + fan; //l番目のレースに出る場合
+                      this.mem[i + 1][j + 1][k + 1] = l;
+                    }
                   }
               }
             }
