@@ -265,14 +265,17 @@
           >/>
           <el-table-column prop="num" label="目標人数" width="90"
             ><template slot-scope="scope">
-              {{ scope.row.num }}人
+              <template v-if="scope.row.type === 'victory'">(レース)</template>
+              <template v-else>{{ scope.row.num }}人</template>
             </template></el-table-column
           >/>
           <el-table-column prop="status" label="有効" width="60"
             ><template slot-scope="scope">
               <el-switch
                 v-model="scope.row.status"
-                :disabled="scope.row.type === 'target'"
+                :disabled="
+                  scope.row.type === 'fan' || scope.row.type === 'victory'
+                "
                 @change="setCalendar()"
               >
               </el-switch> </template></el-table-column
@@ -626,6 +629,7 @@ export default {
       fan_quota: [],
       dp: [], //レースレコメンド計算用のDP配列(月×連続出走回数×累積出走回数)
       mem: [], //レースレコメンド復元用の配列
+      dp_cnt: [], //出走レースカウント用のDP配列
       is_show_detail: false,
       is_failed: false,
     };
@@ -678,7 +682,23 @@ export default {
           term_id: ft.term_id,
           num: ft.num,
           text: this.character.name + "の育成目標",
-          type: "target",
+          type: ft.type,
+          status: true,
+        });
+      }
+      //レース勝利数目標があれば追加
+      let victory_targets = this.character.targets[this.scenarios].filter(
+        (v) => v.type === "victory"
+      );
+      for (let i = 0; i < victory_targets.length; i++) {
+        let vt = victory_targets[i];
+        this.fan_quota.push({
+          id: vt.id,
+          term_id: vt.term_id,
+          classes: vt.classes,
+          cnt: vt.cnt,
+          text: this.character.name + "の育成目標",
+          type: vt.type,
           status: true,
         });
       }
@@ -838,6 +858,14 @@ export default {
       if (race.class === "OP" || race.class === "Pre-OP") return 375;
       else return race.requirement;
     },
+    checkClassIdx(i, j) {
+      let race = this.calendar[i].races[j];
+      if (race.class === "GⅠ") return 0;
+      else if (race.class === "GⅡ") return 1;
+      else if (race.class === "GⅢ") return 2;
+      else if (race.class === "OP") return 3;
+      else if (race.class === "Pre-OP") return 4;
+    },
     calculateDP() {
       // DPテーブルの初期化
       const INF = 1000000000;
@@ -846,9 +874,14 @@ export default {
       for (let i = 0; i < N + 1; i++) {
         this.dp[i] = [];
         this.mem[i] = [];
+        this.dp_cnt[i] = [];
         for (let j = 0; j < N + 1; j++) {
           this.dp[i][j] = new Array(N + 1).fill(-INF); //初期値は十分に小さな値
           this.mem[i][j] = new Array(N + 1).fill(-INF); //初期値は-1(レースに出ない)
+          this.dp_cnt[i][j] = [];
+          for (let k = 0; k < N + 1; k++) {
+            this.dp_cnt[i][j][k] = new Array(5).fill(0); //初期値は0(レースに出ない)
+          }
         }
       }
       this.dp[12][1][0] = this.fan_debut; //12ターン目(メイクデビュー)に基礎ファン数700人(累積出走に含めず)
@@ -867,6 +900,9 @@ export default {
               ) {
                 this.dp[i + 1][j + 1][k + 1] = this.dp[i][j][k] + fan; //目標レースに必ず出場
                 this.mem[i + 1][j + 1][k + 1] = l;
+                for (let m = 0; m < 5; m++)
+                  this.dp_cnt[i + 1][j + 1][k + 1][m] = this.dp_cnt[i][j][k][m];
+                this.dp_cnt[i + 1][j + 1][k + 1][this.checkClassIdx(i, l)] += 1;
               }
             }
           }
@@ -882,6 +918,8 @@ export default {
                 //適正チェック
                 this.dp[i + 1][0][k] = this.dp[i][j][k]; //レースに出ない場合
                 this.mem[i + 1][0][k] = -1;
+                for (let m = 0; m < 5; m++)
+                  this.dp_cnt[i + 1][0][k][m] = this.dp_cnt[i][j][k][m];
               }
             }
           }
@@ -893,6 +931,8 @@ export default {
               if (this.dp[i + 1][0][k] < this.dp[i][j][k]) {
                 this.dp[i + 1][0][k] = this.dp[i][j][k]; //レースに出ない場合
                 this.mem[i + 1][0][k] = -1;
+                for (let m = 0; m < 5; m++)
+                  this.dp_cnt[i + 1][0][k][m] = this.dp_cnt[i][j][k][m];
               }
             }
             for (let k = 0; k < N; k++) {
@@ -908,16 +948,26 @@ export default {
                     ) {
                       this.dp[i + 1][j + 1][k + 1] = this.dp[i][j][k] + fan; //l番目のレースに出る場合
                       this.mem[i + 1][j + 1][k + 1] = l;
+                      for (let m = 0; m < 5; m++)
+                        this.dp_cnt[i + 1][j + 1][k + 1][m] =
+                          this.dp_cnt[i][j][k][m];
+                      this.dp_cnt[i + 1][j + 1][k + 1][
+                        this.checkClassIdx(i, l)
+                      ] += 1;
                     }
                   }
               }
             }
           }
         }
-        //ノルマチェック(基準ノルマを満たせていないDPは全て無効化)
-        if (this.fan_quota.some((v) => v.term_id === i + 1 && v.status)) {
+        //ファン数ノルマチェック(基準ノルマを満たせていないDPは全て無効化)
+        if (
+          this.fan_quota.some(
+            (v) => v.term_id === i + 1 && v.status && v.type === "fan"
+          )
+        ) {
           let quota = this.fan_quota.find(
-            (v) => v.term_id === i + 1 && v.status
+            (v) => v.term_id === i + 1 && v.status && v.type === "fan"
           ).num;
           for (let j = 0; j < N + 1; j++) {
             for (let k = 0; k < N + 1; k++) {
@@ -925,6 +975,27 @@ export default {
                 this.dp[i + 1][j][k] * (1 + this.fan_bonus / 100) <
                 quota * (1 + this.quota_leeway / 100)
               ) {
+                this.dp[i + 1][j][k] = -INF;
+                this.mem[i + 1][j][k] = -1;
+              }
+            }
+          }
+        }
+        //レース勝利ノルマチェック(基準ノルマを満たせていないDPは全て無効化)
+        if (
+          this.fan_quota.some(
+            (v) => v.term_id === i + 1 && v.status && v.type === "victory"
+          )
+        ) {
+          let quota = this.fan_quota.find(
+            (v) => v.term_id === i + 1 && v.status && v.type === "victory"
+          );
+          for (let j = 0; j < N + 1; j++) {
+            for (let k = 0; k < N + 1; k++) {
+              let cnt = 0;
+              for (let l = 0; l < 5; l++)
+                cnt += this.dp_cnt[i + 1][j][k][l] * quota.classes[l];
+              if (cnt < quota.cnt) {
                 this.dp[i + 1][j][k] = -INF;
                 this.mem[i + 1][j][k] = -1;
               }

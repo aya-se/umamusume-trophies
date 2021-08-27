@@ -147,7 +147,8 @@
 			{"id": 3, "type":"race", "name":"有馬記念", "grade": 2},
 			{"id": 4, "type":"race", "name":"天皇賞\n（秋）", "grade": 3},
 			{"id": 5, "type":"race", "name":"有馬記念", "grade": 3},
-			{"id": 101, "type":"fan","term_id":24, "num":3000}
+			{"id": 101, "type":"fan","term_id":24, "num":3000},
+			{"id": 102, "type":"victory","term_id":60, "classes":[1,0,0,0,0], "cnt":2}
 		]}
 	},
 	{
@@ -1050,7 +1051,8 @@
 			{"id": 6, "type":"race", "name":"帝王賞", "grade": 3},
 			{"id": 7, "type":"race", "name":"JBCクラシック", "grade": 3},
 			{"id": 8, "type":"race", "name":"チャンピョンズC", "grade": 3},
-			{"id": 9, "type":"race", "name":"東京大賞典", "grade": 3}
+			{"id": 9, "type":"race", "name":"東京大賞典", "grade": 3},
+			{"id": 101, "type":"victory","term_id":25, "classes":[1,1,1,1,1], "cnt":2}
 		]}
 	},
 	{
