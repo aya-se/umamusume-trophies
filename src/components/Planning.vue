@@ -285,7 +285,7 @@
       >条件を満たすプランが立てられませんでした！ファン数ノルマや出走可能条件の緩和を検討してください。</el-alert
     >
     <el-alert show-icon type="success" :closable="false" v-else
-      ><b>予想最大獲得ファン数</b>：{{ fan_sum }} ×
+      ><b>予想獲得ファン数</b>：{{ fan_sum }} ×
       {{ (1 + fan_bonus / 100).toFixed(2) }} =
       {{ (fan_sum * (1 + fan_bonus / 100)).toFixed(0) }}人<el-button
         type="primary"
@@ -1029,8 +1029,8 @@ export default {
   width: auto !important;
 }
 /deep/ [class*="_column"] {
-  padding-top: 5px !important;
-  padding-bottom: 5px !important;
+  padding-top: 7.5px !important;
+  padding-bottom: 7.5px !important;
 }
 /deep/ .el-card__body {
   padding: 10px !important;
@@ -1041,6 +1041,9 @@ export default {
 }
 /deep/ .el-form-item {
   margin-bottom: 7.5px !important;
+}
+/deep/ .el-timeline {
+  padding-left: 20px !important;
 }
 .detail-collapse {
   position: relative;
@@ -1096,8 +1099,8 @@ export default {
 }
 .box-card4 {
   height: auto;
-  margin-left: 10px;
-  margin-right: 40px;
+  margin-left: 0px;
+  margin-right: 25px;
   margin-bottom: 10px;
   padding: 0px;
 }

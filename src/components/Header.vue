@@ -4,19 +4,20 @@
       <router-link to="/" class="link-content">
         <h3 class="link-text">ウマ娘レースプランナー</h3></router-link
       >
-      <router-link to="/list" class="link-content">
-        <i class="el-icon-s-grid" />レース一覧表
-      </router-link>
-      <router-link to="/planning" class="link-content">
-        <i class="el-icon-s-opportunity" />レース計画
-      </router-link>
-      <router-link to="/info" class="link-content">
-        <i class="el-icon-info" />各種情報
-      </router-link>
+      <div class="menu">
+        <router-link to="/list" class="link-content">
+          <i class="el-icon-s-grid" />レース一覧表
+        </router-link>
+        <router-link to="/planning" class="link-content">
+          <i class="el-icon-s-opportunity" />レース計画
+        </router-link>
+        <router-link to="/info" class="link-content">
+          <i class="el-icon-info" />各種情報
+        </router-link>
+      </div>
     </header>
   </div>
 </template>
-
 <script>
 import { mapActions } from "vuex";
 import { mapGetters } from "vuex";
