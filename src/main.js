@@ -1,4 +1,5 @@
 import Vue from "vue";
+import VModal from "vue-js-modal";
 import App from "./App.vue";
 import router from "./router";
 import firebase from "firebase";
@@ -7,7 +8,7 @@ import vuetify from "./plugins/vuetify";
 import "./plugins/element.js";
 
 Vue.config.productionTip = false;
-
+Vue.use(VModal);
 var firebaseConfig = {
   apiKey: "AIzaSyAlHw_T-7f-1lfCIknz97EIVjVu1cDSDS4",
   authDomain: "umamusume-trophies.firebaseapp.com",

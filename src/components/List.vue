@@ -5,7 +5,7 @@
       >開催される全てのレースの情報を閲覧できます。トロフィー列のボタンではトロフィーの獲得状況を管理でき、ログイン中のアカウントごとにステータスが保存されます。</el-alert
     >
     <el-table :data="$store.getters.races" height="800" class="table">
-      <el-table-column fixed prop="id" label="レース名" sortable width="180"
+      <el-table-column prop="id" label="レース名" sortable width="180"
         ><template slot-scope="scope">
           {{ scope.row.name }}
         </template></el-table-column

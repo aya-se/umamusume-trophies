@@ -268,8 +268,7 @@
               {{ scope.row.num }}人
             </template></el-table-column
           >/>
-          <el-table-column prop="text" label="詳細" width="360" />
-          <el-table-column prop="status" label="有効" width="50"
+          <el-table-column prop="status" label="有効" width="60"
             ><template slot-scope="scope">
               <el-switch
                 v-model="scope.row.status"
@@ -278,18 +277,180 @@
               >
               </el-switch> </template></el-table-column
           >/>
+          <el-table-column prop="text" label="詳細" width="360" />
         </el-table>
       </el-collapse-item>
     </el-collapse>
-    <h3><i class="el-icon-s-marketing" />レーススケジュール</h3>
     <el-alert show-icon type="error" :closable="false" v-if="is_failed"
       >条件を満たすプランが立てられませんでした！ファン数ノルマや出走可能条件の緩和を検討してください。</el-alert
     >
     <el-alert show-icon type="success" :closable="false" v-else
-      ><b>予想獲得ファン数</b>：{{ fan_sum }} ×
+      ><b>予想最大獲得ファン数</b>：{{ fan_sum }} ×
       {{ (1 + fan_bonus / 100).toFixed(2) }} =
-      {{ (fan_sum * (1 + fan_bonus / 100)).toFixed(0) }}人</el-alert
+      {{ (fan_sum * (1 + fan_bonus / 100)).toFixed(0) }}人<el-button
+        type="primary"
+        round
+        size="small"
+        class="btn btn-default"
+        @click="showActivities(true)"
+      >
+        <i class="el-icon-s-data" />出走スケジュール
+      </el-button></el-alert
     >
+    <modal
+      name="activities"
+      class="activities-modal"
+      width="90%"
+      height="auto"
+      :scrollable="true"
+    >
+      <h3><i class="el-icon-s-data" /> 出走スケジュール</h3>
+      <el-timeline>
+        <el-timeline-item
+          class="timeline"
+          v-for="(activity, index) in activities"
+          :key="index"
+          :icon="activity.icon"
+          :type="activity.type"
+          :color="activity.color"
+          :size="activity.size"
+          :timestamp="activity.term"
+          placement="top"
+        >
+          <el-card
+            class="box-card4"
+            :class="borderColor(activity)"
+            :key="activity.id"
+            shadow="hover"
+          >
+            <div class="race-text">
+              <p class="box-text1">
+                <b>{{ activity.name }}</b>
+              </p>
+              <p class="box-text2">
+                {{ activity.distance }}m ({{ activity.category }}) /
+                {{ activity.rotation }}
+                <el-tag
+                  effect="plain"
+                  type="warning"
+                  class="tag-status"
+                  size="small"
+                  v-if="
+                    $store.getters.races.find((v) => v.id === activity.id)
+                      .status
+                  "
+                  ><i class="el-icon-star-on"
+                /></el-tag>
+                <el-tag
+                  effect="plain"
+                  type="warning"
+                  class="tag-status"
+                  size="small"
+                  v-else
+                  ><i class="el-icon-star-off"
+                /></el-tag>
+              </p>
+            </div>
+            <div class="race-tag">
+              <el-tag
+                effect="dark"
+                type="primary"
+                class="tag"
+                size="mini"
+                v-if="activity.class == 'GⅠ'"
+                >GⅠ</el-tag
+              >
+              <el-tag
+                effect="dark"
+                type="danger"
+                class="tag"
+                size="mini"
+                v-else-if="activity.class == 'GⅡ'"
+                >GⅡ</el-tag
+              >
+              <el-tag
+                effect="dark"
+                type="success"
+                class="tag"
+                size="mini"
+                v-else-if="activity.class == 'GⅢ'"
+                >GⅢ</el-tag
+              >
+              <el-tag
+                effect="dark"
+                type="warning"
+                class="tag"
+                size="mini"
+                v-else-if="activity.class == 'OP'"
+                >OP</el-tag
+              >
+              <el-tag
+                effect="dark"
+                type="warning"
+                class="tag"
+                size="mini"
+                v-else-if="activity.class == 'Pre-OP'"
+                >Pre-OP</el-tag
+              >
+              <el-tag
+                effect="plain"
+                type="success"
+                class="tag"
+                size="mini"
+                v-if="activity.field == '芝'"
+                >芝</el-tag
+              >
+              <el-tag
+                effect="plain"
+                type="warning"
+                class="tag"
+                size="mini"
+                v-else-if="activity.field == 'ダート'"
+                >ダート</el-tag
+              >
+            </div>
+            <div class="fan">
+              <el-tag type="info" class="tag-fan" size="small"
+                >ファン数 +{{ activity.fan }}人</el-tag
+              >
+              <el-tag
+                effect="dark"
+                type="danger"
+                class="tag-info"
+                size="small"
+                v-if="activity.isTarget"
+                >シナリオ</el-tag
+              >
+              <el-tag
+                effect="dark"
+                type="primary"
+                class="tag-info"
+                size="small"
+                v-else-if="activity.isRecommend"
+                >おすすめ</el-tag
+              >
+              <el-tag
+                effect="plain"
+                type="info"
+                class="tag-info"
+                size="small"
+                v-else
+                >適正OK</el-tag
+              >
+            </div>
+          </el-card>
+        </el-timeline-item>
+      </el-timeline>
+      <el-button
+        type="danger"
+        round
+        class="btn btn-default"
+        @click="showActivities(false)"
+      >
+        閉じる
+      </el-button>
+    </modal>
+    <h3><i class="el-icon-s-marketing" />レースカレンダー</h3>
     <div id="calendar">
       <template v-for="(item, id) in calendar">
         <el-card
@@ -434,6 +595,7 @@
 import Vue from "vue";
 import { mapActions } from "vuex";
 import { mapGetters } from "vuex";
+import firebase from "firebase";
 import fan_quota from "@/../public/data/fan_quota.json";
 export default {
   data() {
@@ -442,6 +604,7 @@ export default {
       scenarios: ["URAファイナルズ"],
       scenario: "URAファイナルズ",
       appropriate: ["A", "B", "C", "D", "E", "F", "G"],
+      activities: [],
       calendar: [],
       fields: [true, true],
       distances: [true, true, true, true],
@@ -471,6 +634,7 @@ export default {
     this.character = this.$store.state.characters[0];
     for (let i = 0; i < 72; i++) this.calendar.push({});
     this.calendar.push({ name: "育成終了時" }); //育成終了時(ダミー)
+    this.getAndSetTrophies();
     this.setFanQuota();
     this.setCalendar();
   },
@@ -515,6 +679,10 @@ export default {
       this.fan_quota = this.fan_quota.filter((v) => v.id !== item.id);
       this.setCalendar();
     },
+    showActivities(status) {
+      if (status) this.$modal.show("activities");
+      else this.$modal.hide("activities");
+    },
     setCalendar() {
       //適性に応じたフィルタ自動変更
       this.fields[0] = this.character.field_1 <= this.min_app;
@@ -553,6 +721,7 @@ export default {
             Vue.set(this.calendar[i], "isTarget", true);
             let race2 = JSON.parse(JSON.stringify(race));
             race2.isTarget = true;
+            race2.term = season + race2.term;
             this.calendar[i].races.push(race2);
             break;
           }
@@ -622,9 +791,11 @@ export default {
               isValid = 0;
             //追加
             if (isValid) {
-              this.calendar[i].races.push(
-                JSON.parse(JSON.stringify(this.$store.getters.races[j]))
+              let race2 = JSON.parse(
+                JSON.stringify(this.$store.getters.races[j])
               );
+              race2.term = season + race2.term;
+              this.calendar[i].races.push(race2);
             }
           }
         }
@@ -802,12 +973,14 @@ export default {
       }
       // レコメンドレースの復元(レコメンド属性の登録)
       this.fan_sum = this.dp[N][best_j][best_k]; //表示用の基礎数値登録
+      this.activities = []; //アクティビティ初期化
       let j = best_j;
       let k = best_k;
       for (let i = N; i >= 13; i--) {
         //直近はレースに出場したというパターン
         if (j > 0) {
           //出場したレースの復元
+          this.activities.push(this.calendar[i - 1].races[this.mem[i][j][k]]);
           if (this.calendar[i - 1].isTarget === false) {
             this.calendar[i - 1].races[this.mem[i][j][k]].isRecommend = true;
           }
@@ -826,7 +999,23 @@ export default {
           }
         }
       }
+      this.activities.reverse(); //アクティビティ反転
       //console.log(this.dp);
+    },
+    getAndSetTrophies() {
+      var database = firebase.database();
+      database
+        .ref("user_trophies/" + this.$store.getters.uid)
+        .once("value")
+        .then((snapshot) => {
+          this.trophies = JSON.parse(snapshot.val());
+          if (this.trophies === null) this.trophies = [];
+          for (let i = 0; i < this.$store.getters.races.length; i++) {
+            if (this.trophies.includes(this.$store.getters.races[i].id)) {
+              Vue.set(this.$store.state.races[i], "status", true);
+            }
+          }
+        }); //ここアロー関数じゃないと動かない
     },
   },
 };
@@ -839,12 +1028,19 @@ export default {
   margin-right: 10px !important;
   width: auto !important;
 }
+/deep/ [class*="_column"] {
+  padding-top: 5px !important;
+  padding-bottom: 5px !important;
+}
 /deep/ .el-card__body {
   padding: 10px !important;
 }
 /deep/ .el-form-item__label {
   padding-right: 10px !important;
   padding-left: 10px !important;
+}
+/deep/ .el-form-item {
+  margin-bottom: 7.5px !important;
 }
 .detail-collapse {
   position: relative;
@@ -878,6 +1074,10 @@ export default {
 .form {
   border-color: lightgray;
 }
+.activities-modal {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
 .box-card {
   overflow-y: visible;
   width: 255px;
@@ -891,6 +1091,13 @@ export default {
   height: auto;
   margin-left: 0px;
   margin-right: 0px;
+  margin-bottom: 10px;
+  padding: 0px;
+}
+.box-card4 {
+  height: auto;
+  margin-left: 10px;
+  margin-right: 40px;
   margin-bottom: 10px;
   padding: 0px;
 }
@@ -958,6 +1165,9 @@ export default {
 }
 .web-button {
   margin-bottom: 5px !important;
+}
+.btn {
+  margin: 10px;
 }
 .button-app {
   width: 60px;
