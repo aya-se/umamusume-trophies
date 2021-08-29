@@ -1497,7 +1497,7 @@ export default {
 }
 .detail-title {
   position: absolute;
-  width: 120px;
+  width: 130px;
   left: 0;
   right: 0;
   padding-top: 7.5px;
@@ -1510,7 +1510,7 @@ export default {
 }
 .quota-title {
   position: absolute;
-  width: 210px;
+  width: 220px;
   left: 0;
   right: 0;
   padding-top: 7.5px;
