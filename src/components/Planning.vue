@@ -70,7 +70,6 @@
       <el-button
         type="danger"
         round
-        size="small"
         class="btn btn-default"
         @click="showModal(false, 'help-0')"
       >
@@ -109,7 +108,6 @@
       <el-button
         type="danger"
         round
-        size="small"
         class="btn btn-default"
         @click="showModal(false, 'help-1')"
       >
@@ -218,7 +216,6 @@
       <el-button
         type="danger"
         round
-        size="small"
         class="btn btn-default"
         @click="showModal(false, 'help-2')"
       >
@@ -420,7 +417,6 @@
       <el-button
         type="danger"
         round
-        size="small"
         class="btn btn-default"
         @click="showModal(false, 'help-3')"
       >
@@ -489,7 +485,7 @@
       {{ (1.09 * fan_sum * (1 + fan_bonus / 100)).toFixed(0) }}人)<el-button
         type="primary"
         round
-        size="small"
+        size="medium"
         class="btn btn-default"
         @click="showModal(true, 'activities')"
       >
@@ -646,7 +642,6 @@
       <el-button
         type="danger"
         round
-        size="small"
         class="btn btn-default"
         @click="showModal(false, 'activities')"
       >
@@ -697,7 +692,6 @@
       <el-button
         type="danger"
         round
-        size="small"
         class="btn btn-default"
         @click="showModal(false, 'help-4')"
       >
