@@ -1037,6 +1037,16 @@ export default {
         }
       }
     },
+    clearSelectedRaces() {
+      for (let i = 0; i < 72; i++) {
+        for (let j = 0; j < this.calendar[i].races.length; j++) {
+          let race = this.calendar[i].races[j];
+          if (race.isSelected) {
+            Vue.set(race, "isSelected", false);
+          }
+        }
+      }
+    },
     setActivities() {
       this.activities = []; //アクティビティ初期化
       for (let i = 0; i < 72; i++) {
@@ -1153,7 +1163,10 @@ export default {
           }
         }
       }
-      if (isDP) this.calculateDP();
+      if (isDP) {
+        this.clearSelectedRaces();
+        this.calculateDP();
+      }
       this.setActivities();
       if (isDP) {
         if (!this.is_failed) {
