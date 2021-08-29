@@ -13,7 +13,7 @@ export default {
   mounted() {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        this.$router.push("/list");
+        this.$router.push("/");
       } else {
         this.$router.push("/login");
       }
