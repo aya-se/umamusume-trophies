@@ -14,6 +14,24 @@
         <router-link to="/info" class="link-content">
           <i class="el-icon-info" />各種情報
         </router-link>
+        <el-button
+          type="text"
+          class="link-content"
+          v-if="$store.getters.isLogin"
+          @click="logout"
+          >サインアウト</el-button
+        >
+        <el-tooltip
+          class="item"
+          effect="dark"
+          content="Googleアカウントでログインするとトロフィーの管理機能が利用できるようになります！"
+          placement="bottom-start"
+          v-else
+        >
+          <el-button type="text" class="link-content" @click="login"
+            >サインイン</el-button
+          >
+        </el-tooltip>
       </div>
     </header>
     <header class="tab" v-if="$mq === 'sm'">
@@ -42,6 +60,25 @@
           <router-link to="/info" class="link-content">
             <i class="el-icon-info" />各種情報
           </router-link>
+          <el-divider class="hamburger-divider" />
+          <el-button
+            type="text"
+            class="link-content"
+            v-if="$store.getters.isLogin"
+            @click="logout"
+            >サインアウト</el-button
+          >
+          <el-tooltip
+            class="item"
+            effect="dark"
+            content="Googleアカウントでログインするとトロフィーの管理機能が利用できるようになります！"
+            placement="bottom-start"
+            v-else
+          >
+            <el-button type="text" class="link-content" @click="login"
+              >サインイン</el-button
+            >
+          </el-tooltip>
         </div>
       </el-collapse-transition>
     </header>
@@ -59,7 +96,7 @@ export default {
   },
   methods: {
     ...mapActions(["login", "setLoginUser", "logout", "deleteLoginUser"]),
-    ...mapGetters(["uid"]),
+    ...mapGetters(["uid", "isLogin"]),
     onClick() {
       this.isOpen = !this.isOpen;
     },
@@ -93,6 +130,11 @@ export default {
   color: lightgray !important;
   margin-left: 5px;
   margin-right: 5px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  font-size: 16px;
 }
 .hamburger-menu {
   color: lightgray;

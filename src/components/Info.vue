@@ -2,13 +2,13 @@
   <div class="info">
     <h2><i class="el-icon-info" /> 各種情報</h2>
     <h3>バージョン情報</h3>
-    <p>バージョン番号：ver.1.00</p>
-    <p>最終更新日：2021年8月29日(日)</p>
+    <p>バージョン番号：ver.1.10</p>
+    <p>最終更新日：2021年8月30日(月)</p>
     <h3>ステータス情報</h3>
-    <p>あなたのuid : {{ this.$store.getters.uid }}</p>
-    <el-button type="danger" round class="btn btn-default" @click="logout">
-      ログアウト
-    </el-button>
+    <p v-if="$store.getters.isLogin">
+      利用中のアカウント：{{ this.$store.state.login_user.email }}
+    </p>
+    <p v-else>ログインしていません</p>
     <transition name="el-fade-in-linear">
       <div id="account">
         <h2><i class="el-icon-menu" /> Accounts</h2>

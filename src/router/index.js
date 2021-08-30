@@ -1,8 +1,8 @@
 import Vue from "vue";
 import Router from "vue-router";
 import firebase from "firebase";
-import Login from "../components/Login.vue";
-import Loading from "../components/Loading.vue";
+//import Login from "../components/Login.vue";
+//import Loading from "../components/Loading.vue";
 import List from "../components/List.vue";
 import Planning from "../components/Planning.vue";
 import Info from "../components/Info.vue";
@@ -17,33 +17,33 @@ let router = new Router({
       name: "default",
       redirect: "/planning",
     },
-    {
-      path: "/login",
-      name: "login",
-      component: Login,
-    },
-    {
-      path: "/loading",
-      name: "loading",
-      component: Loading,
-    },
+    //{
+    //  path: "/login",
+    //  name: "login",
+    //  component: Login,
+    //},
+    //{
+    //  path: "/loading",
+    //  name: "loading",
+    //  component: Loading,
+    //},
     {
       path: "/list",
       name: "list",
       component: List,
-      meta: { requiresAuth: true },
+      meta: { requiresAuth: false },
     },
     {
       path: "/planning",
       name: "planning",
       component: Planning,
-      meta: { requiresAuth: true },
+      meta: { requiresAuth: false },
     },
     {
       path: "/info",
       name: "info",
       component: Info,
-      meta: { requiresAuth: true },
+      meta: { requiresAuth: false },
     },
   ],
 });

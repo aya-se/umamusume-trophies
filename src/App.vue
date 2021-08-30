@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Header v-if="this.$store.getters.isLogin" />
+    <Header />
     <router-view />
   </div>
 </template>

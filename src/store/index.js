@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import firebase from "firebase";
-import router from "@/router";
+//import router from "@/router";
 import races from "@/../public/data/races.json";
 import characters from "@/../public/data/characters.json";
 Vue.use(Vuex);
@@ -37,7 +37,6 @@ export default new Vuex.Store({
     login() {
       const provider = new firebase.auth.GoogleAuthProvider();
       firebase.auth().signInWithRedirect(provider);
-      router.push("/loading");
     },
     setLoginStatus({ commit }, status) {
       commit("setLoginStatus", status);

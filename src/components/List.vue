@@ -188,6 +188,7 @@
               scope.row.class == 'GⅡ' ||
               scope.row.class == 'GⅢ'
             "
+            :disabled="!$store.getters.isLogin"
             @change="onChange(scope.row)"
           />
         </template>
