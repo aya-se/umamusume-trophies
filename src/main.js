@@ -25,7 +25,7 @@ Vue.config.productionTip = false;
 Vue.use(VModal);
 Vue.use(VueMq, {
   breakpoints: {
-    sm: 600,
+    sm: 700,
     pc: 1250,
   },
   defaultBreakpoint: "sm",
