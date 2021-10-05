@@ -465,18 +465,26 @@
 	{
 		"id": 19,
 		"name": "アグネスデジタル",
-		"rarity": 0,
-		"flag": 0,
+		"rarity": 3,
+		"flag": 1,
 		"field_1": "A",
 		"field_2": "A",
-		"distance_1": "A",
+		"distance_1": "F",
 		"distance_2": "A",
 		"distance_3": "A",
-		"distance_4": "A",
-		"style_1": "A",
+		"distance_4": "G",
+		"style_1": "G",
 		"style_2": "A",
 		"style_3": "A",
-		"style_4": "A"
+		"style_4": "B",
+		"targets": {"URAファイナルズ": [
+			{"id": 1, "type":"race", "name":"ヒヤシンスS", "grade": 2},
+			{"id": 2, "type":"race", "name":"NHKマイルC", "grade": 2},
+			{"id": 3, "type":"race", "name":"ジャパンダートダービー", "grade": 2},
+			{"id": 4, "type":"race", "name":"マイルCS", "grade": 2},
+			{"id": 5, "type":"race", "name":"天皇賞\n（秋）", "grade": 3},
+			{"id": 101, "type":"victory","term_id":60, "classes":[1,0,0,0,0], "cnt":3}
+		]}
 	},
 	{
 		"id": 20,
@@ -660,18 +668,29 @@
 	{
 		"id": 28,
 		"name": "ヒシアケボノ",
-		"rarity": 0,
-		"flag": 0,
+		"rarity": 3,
+		"flag": 1,
 		"field_1": "A",
-		"field_2": "A",
+		"field_2": "F",
 		"distance_1": "A",
-		"distance_2": "A",
-		"distance_3": "A",
-		"distance_4": "A",
-		"style_1": "A",
+		"distance_2": "B",
+		"distance_3": "F",
+		"distance_4": "G",
+		"style_1": "B",
 		"style_2": "A",
-		"style_3": "A",
-		"style_4": "A"
+		"style_3": "C",
+		"style_4": "G",
+		"targets": {"URAファイナルズ": [
+			{"id": 1, "type":"race", "name":"スプリンターズS", "grade": 2},
+			{"id": 2, "type":"race", "name":"スワンS", "grade": 2},
+			{"id": 3, "type":"race", "name":"マイルCS", "grade": 2},
+			{"id": 4, "type":"race", "name":"高松宮記念", "grade": 3},
+			{"id": 5, "type":"race", "name":"安田記念", "grade": 3},
+			{"id": 6, "type":"race", "name":"スプリンターズS", "grade": 3},
+			{"id": 7, "type":"race", "name":"マイルCS", "grade": 3},
+			{"id": 101, "type":"fan","term_id":23, "num":3000},
+			{"id": 102, "type":"fan","term_id":37, "num":10000}
+		]}
 	},
 	{
 		"id": 29,

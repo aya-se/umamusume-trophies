@@ -116,13 +116,16 @@
     </modal>
     <el-form :inline="true" ref="form-scenario" class="form" size="small">
       <el-form-item label="シナリオ">
-        <el-select v-model="scenario" placeholder="Select">
+        <el-select
+          v-model="scenario"
+          placeholder="Select"
+          @change="setFanQuota(), setCalendar(true)"
+        >
           <el-option
             v-for="sce in scenarios"
             :key="sce"
             :label="sce"
             :value="sce"
-            @change="setCalendar(true)"
           />
         </el-select>
       </el-form-item>
@@ -857,8 +860,8 @@ export default {
   data() {
     return {
       character: [{}],
-      scenarios: ["URAファイナルズ"],
-      scenario: "URAファイナルズ",
+      scenarios: ["URAファイナルズ", "アオハル杯"],
+      scenario: "アオハル杯",
       appropriate: ["A", "B", "C", "D", "E", "F", "G"],
       activities: [],
       calendar: [],
@@ -866,7 +869,7 @@ export default {
       distances: [true, true, true, true],
       classes: [true, true, true, true, true],
       not_win_only: false,
-      min_app: "A",
+      min_app: "B",
       fan_bonus: 45,
       race_limit_num: 2,
       is_ban_summer: true,
@@ -918,14 +921,17 @@ export default {
         this.character.name === "ハルウララ" ||
         this.character.name === "スマートファルコン"
       ) {
-        if (this.scenario === "URAファイナルズ") {
+        if (
+          this.scenario === "URAファイナルズ" ||
+          this.scenario === "アオハル杯"
+        ) {
           this.fan_quota.find((item) => item.id === 3).num = 40000;
           this.fan_quota.find((item) => item.id === 4).num = 60000;
           this.fan_quota.find((item) => item.id === 5).num = 80000;
         }
       }
       //ファン数目標があれば追加
-      let fan_targets = this.character.targets[this.scenarios].filter(
+      let fan_targets = this.character.targets["URAファイナルズ"].filter(
         (v) => v.type === "fan"
       );
       for (let i = 0; i < fan_targets.length; i++) {
@@ -940,7 +946,7 @@ export default {
         });
       }
       //レース勝利数目標があれば追加
-      let victory_targets = this.character.targets[this.scenarios].filter(
+      let victory_targets = this.character.targets["URAファイナルズ"].filter(
         (v) => v.type === "victory"
       );
       for (let i = 0; i < victory_targets.length; i++) {
@@ -1079,7 +1085,7 @@ export default {
         Vue.set(this.calendar[i], "races", new Array());
         //目標レースがある場合
         let isTarget = false;
-        let race_targets = this.character.targets[this.scenarios].filter(
+        let race_targets = this.character.targets["URAファイナルズ"].filter(
           (v) => v.type === "race"
         );
         for (let j = 0; j < race_targets.length; j++) {

@@ -2,8 +2,8 @@
   <div class="info">
     <h2><i class="el-icon-info" /> 各種情報</h2>
     <h3>バージョン情報</h3>
-    <p>バージョン番号：ver.1.10</p>
-    <p>最終更新日：2021年8月30日(月)</p>
+    <p>バージョン番号：ver.1.20</p>
+    <p>最終更新日：2021年10月5日(火)</p>
     <h3>ステータス情報</h3>
     <p v-if="$store.getters.isLogin">
       利用中のアカウント：{{ this.$store.state.login_user.email }}
