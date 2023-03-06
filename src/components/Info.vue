@@ -13,30 +13,11 @@
       <div id="account">
         <h2><i class="el-icon-menu" /> Accounts</h2>
         <el-card class="box-card2" shadow="hover">
-          <el-link target="_blank" href="https://twitter.com/Hakuba_snow"
+          <el-link target="_blank" href="https://twitter.com/ayase_lab"
             >Twitter</el-link
           >
           <p>
             <img class="box-image" src="../assets/twitter.png" />
-          </p>
-        </el-card>
-
-        <el-card class="box-card2" shadow="hover">
-          <el-link
-            target="_blank"
-            href="https://www.youtube.com/channel/UCW4FH8oKhHE8vIRnr0StJ8g"
-            >Youtube</el-link
-          >
-          <p>
-            <img class="box-image" src="../assets/youtube.png" />
-          </p>
-        </el-card>
-        <el-card class="box-card2" shadow="hover">
-          <el-link target="_blank" href="https://www.nicovideo.jp/series/183850"
-            >NicoNico</el-link
-          >
-          <p>
-            <img class="box-image" src="../assets/niconico.png" />
           </p>
         </el-card>
       </div>
@@ -45,7 +26,7 @@
       <div id="contact">
         <h2><i class="el-icon-s-comment" /> Contacts</h2>
         サイトの不具合などありましたらお気軽にご連絡下さい。
-        <p><b>Twitter： </b>@Hakuba_snow</p>
+        <p><b>Twitter： </b>@ayase_lab</p>
       </div>
     </transition>
   </div>
